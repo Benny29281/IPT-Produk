@@ -37,7 +37,6 @@ export function createOrderSnapshot(lines, {
     const sub = rows.some(row => row.lineTotal === null) ? null : rows.reduce((sum,row) => sum + row.lineTotal,0);
     const fee = normalizeDelivery(deliveryFor?.(sub,lines));
     snapshot.deliveryFee = fee.idr;
-    snapshot.deviceDeliveryFee = fee.deviceFee;
     snapshot.total = sub === null ? null : sub + snapshot.deliveryFee;
   }
   return Object.freeze(snapshot);

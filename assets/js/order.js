@@ -1,4 +1,4 @@
-import {normalizeDelivery,deliveryAmount} from './delivery.js';
+import {normalizeDelivery} from './delivery.js';
 import { translate } from './i18n.js';
 import {countryName} from './countries.js';
 import {addressLines} from './customer.js';
@@ -36,7 +36,7 @@ export function formatOrder(lines, { name = '', note = '', priced = false, money
   lines.forEach((line, index) => {
     text.push(`${index + 1}. ${displayName(line.product)}${line.product.country ? ` [${countryName(line.product.country,language)}]` : ''}${line.product.nameZh ? `\n   ${line.product.nameZh}` : ''} — ${t(line.unit)} x ${line.quantity}${priced ? ` — ${line.price === null ? t('unknownPrice') : money(line.price * line.quantity)}` : ''}`);
   });
-  if (priced) text.push('', lines.some(line => line.price === null) ? `${t('total')}: ${t('unknownTotal')}` : (() => { const sub = lines.reduce((sum, line) => sum + line.price * line.quantity, 0), fee = normalizeDelivery(deliveryFor?.(sub,lines)); return `${fee.idr || fee.deviceFee ? `${t('deliveryFee')}: ${deliveryAmount(fee.idr,fee.deviceFee,money)}\n` : ''}${t('total')}: ${deliveryAmount(sub + fee.idr,fee.deviceFee,money)}`; })());
+  if (priced) text.push('', lines.some(line => line.price === null) ? `${t('total')}: ${t('unknownTotal')}` : (() => { const sub = lines.reduce((sum, line) => sum + line.price * line.quantity, 0), fee = normalizeDelivery(deliveryFor?.(sub,lines)); return `${fee.idr ? `${t('deliveryFee')}: ${money(fee.idr)}\n` : ''}${t('total')}: ${money(sub + fee.idr)}`; })());
   if (note.trim()) text.push('', `${t('note')}: ${note.trim()}`);
   text.push('', t('orderClosing'));
   return text.join('\n');

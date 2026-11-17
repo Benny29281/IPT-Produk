@@ -58,6 +58,5 @@ collections:
         file: data/settings.json
         format: json
         fields:
-          - {label: Ongkir device per unit (simbol asli ¥), name: deviceDeliveryFee, widget: number, value_type: int, min: 0, default: 120}
           - {label: Ongkir TEREA 1-2 slof (Rp), name: tereaSmallDeliveryFee, widget: number, value_type: int, min: 0, default: 400000}
           - {label: Ongkir TEREA 3-4 slof (Rp per kelompok maksimal 4 slof), name: tereaGroupDeliveryFee, widget: number, value_type: int, min: 0, default: 450000}

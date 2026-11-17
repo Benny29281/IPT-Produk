@@ -1,4 +1,4 @@
-import {calculateDelivery,deliverySettings,deliveryAmount} from './delivery.js';
+import {calculateDelivery,deliverySettings} from './delivery.js';
 import { normalizeQuantity, orderLines, formatOrder, displayName, changeProductUnit } from './order.js';
 import { translate } from './i18n.js';
 import {filterCatalog,countryName,editionCountries} from './catalog.js';
@@ -120,7 +120,7 @@ function renderOrder() {
   $('#order-lines').innerHTML = selected.length ? selected.map(line => `<div class="order-line"><div><strong>${escape(displayName(line.product))}</strong><small>${line.product.nameZh ? `<span lang="zh-Hans">${escape(line.product.nameZh)}</span>` : escape(line.product.variant)}${line.product.country ? ` · ${escape(countryName(line.product.country,language))}` : ''} · ${labels[line.unit]} × ${line.quantity}${priced ? `<br>${line.price === null ? t('unknownPrice') : money(line.price * line.quantity)}` : ''}</small></div><button class="remove-line" data-remove="${escape(`${line.product.id}:${line.unit}`)}" aria-label="${escape(t('remove',{name:displayName(line.product),unit:labels[line.unit]}))}">×</button></div>`).join('') : `<div class="empty-order"><span class="empty-icon" aria-hidden="true">⊞</span><strong>${t('emptyTitle')}</strong><p>${t('emptyHelp')}</p></div>`;
   $('#order-total').hidden = !priced || !selected.length;
   const unknown = selected.some(line => line.price === null), sub = unknown ? 0 : selected.reduce((s,line) => s + line.price * line.quantity, 0), fee = deliveryFor(sub);
-  $('#order-total').innerHTML = `${priced && (fee.idr > 0 || fee.deviceFee > 0) ? `<span>${t('deliveryFee')}: ${deliveryAmount(fee.idr,fee.deviceFee,money)}</span>` : ''}<span>${t('estimatedTotal')}</span><strong>${unknown ? t('needsConfirmation') : deliveryAmount(sub + fee.idr,fee.deviceFee,money)}</strong>`;
+  $('#order-total').innerHTML = `${priced && fee.idr > 0 ? `<span>${t('deliveryFee')}: ${money(fee.idr)}</span>` : ''}<span>${t('estimatedTotal')}</span><strong>${unknown ? t('needsConfirmation') : money(sub + fee.idr)}</strong>`;
   $('#copy').disabled = !selected.length;
   $('#reset').disabled = !selected.length && !hasCustomerInput();
   const configured = config.whatsappEnabled !== false && /^[1-9]\d{7,14}$/.test(config.whatsapp);
