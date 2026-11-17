@@ -1,3 +1,4 @@
+import {deliveryAmount} from './delivery.js';
 import {translate} from './i18n.js';
 import {countryName} from './catalog.js';
 import {addressLines} from './customer.js';
@@ -117,10 +118,10 @@ export function renderOrderPages(snapshot, createCanvas = (width,height) => {
   });
   if (snapshot.priced) {
     ensure(100); y += 16;
-    if (snapshot.deliveryFee > 0) { text(t('deliveryFee'),LEFT,y,22,false); font(22,false); text(money(snapshot.deliveryFee),RIGHT - ctx.measureText(money(snapshot.deliveryFee)).width,y,22,false); y += 44; }
+    if (snapshot.deliveryFee > 0 || snapshot.deviceDeliveryFee > 0) { text(t('deliveryFee'),LEFT,y,22,false); font(22,false); text(deliveryAmount(snapshot.deliveryFee,snapshot.deviceDeliveryFee,money),RIGHT - ctx.measureText(deliveryAmount(snapshot.deliveryFee,snapshot.deviceDeliveryFee,money)).width,y,22,false); y += 44; }
     text(t('total'),LEFT,y,25,true);
     font(24,true);
-    const total = snapshot.total === null ? t('unknownTotal') : money(snapshot.total);
+    const total = snapshot.total === null ? t('unknownTotal') : deliveryAmount(snapshot.total,snapshot.deviceDeliveryFee,money);
     const totalLines = wrapText(ctx,total,450);
     totalLines.forEach((line,index) => {
       font(24,true); const x = RIGHT - ctx.measureText(line).width;

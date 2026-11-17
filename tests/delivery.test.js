@@ -1,0 +1,70 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {calculateDelivery,deliverySettings,deliveryAmount} from '../assets/js/delivery.js';
+import {createOrderSnapshot} from '../assets/js/order-document.js';
+import {formatOrder} from '../assets/js/order.js';
+import {renderOrderPages} from '../assets/js/order-export.js';
+
+const stick = {id:'terea',category:'sticks',brand:'TEREA',name:'Auburn',country:'ID'};
+const device = {id:'device',category:'device',name:'Device',model:'IQOS'};
+const line = (product,unit,quantity,price=100000) => ({product,unit,quantity,price});
+const deliveryFor = (_,lines) => calculateDelivery(lines);
+const money = n => `Rp${n.toLocaleString('en-US')}`;
+
+test('TEREA rates follow the supplied examples and repeat by four cartons', () => {
+  const expected = [0,400000,400000,450000,450000,850000,850000,900000,900000,1300000,1300000,1350000,1350000];
+  expected.forEach((idr,quantity) => assert.deepEqual(calculateDelivery([line(stick,'carton',quantity)]),{idr,deviceFee:0}));
+});
+
+test('packs and cartons across products are combined before applying tiers', () => {
+  for (const [packs,idr] of [[1,400000],[20,400000],[21,450000],[40,450000],[41,850000]]) {
+    assert.equal(calculateDelivery([line(stick,'pack',packs)]).idr,idr);
+  }
+  const lines = [line(stick,'carton',1),line({...stick,id:'other'},'pack',10)];
+  assert.equal(calculateDelivery(lines).idr,400000);
+  assert.deepEqual(calculateDelivery([]),{idr:0,deviceFee:0});
+});
+
+test('device fee stays separate from rupiah and rates can be managed in settings', () => {
+  const lines=[line(device,'unit',2),line(stick,'carton',7)];
+  assert.deepEqual(calculateDelivery(lines),{idr:900000,deviceFee:240});
+  assert.equal(deliveryAmount(900000,240,money),'Rp900,000 + \u00a5240');
+  assert.deepEqual(calculateDelivery(lines,{deviceDeliveryFee:100,tereaGroupDeliveryFee:500000}),{idr:1000000,deviceFee:200});
+  assert.equal(deliverySettings({deviceDeliveryFee:-1}).deviceDeliveryFee,120);
+  assert.equal(calculateDelivery(lines,{deviceDeliveryFee:0}).deviceFee,0);
+});
+
+test('text and PDF snapshots preserve original prices and separate device currency', () => {
+  const lines=[line(device,'unit',2),line(stick,'carton',7)];
+  const snapshot=createOrderSnapshot(lines,{priced:true,deliveryFor});
+  assert.equal(snapshot.deliveryFee,900000);
+  assert.equal(snapshot.deviceDeliveryFee,240);
+  assert.equal(snapshot.total,1800000);
+  assert.equal(snapshot.rows[0].unitPrice,100000);
+  const text=formatOrder(lines,{priced:true,money,deliveryFor});
+  assert.match(text,/Delivery fee: Rp900,000 \+ \u00a5240/);
+  assert.match(text,/Total: Rp1,800,000 \+ \u00a5240/);
+  const hidden=createOrderSnapshot(lines,{priced:false,deliveryFor});
+  assert.equal(hidden.deviceDeliveryFee,undefined);
+  assert.doesNotMatch(formatOrder(lines,{priced:false,money,deliveryFor}),/\u00a5|900,000/);
+  const unknown=createOrderSnapshot([line(device,'unit',1,null)],{priced:true,deliveryFor});
+  assert.equal(unknown.total,null);
+  assert.equal(unknown.deviceDeliveryFee,120);
+});
+
+test('PDF renders both delivery amounts and appends the existing payment image', () => {
+  const lines=[line(device,'unit',2),line(stick,'carton',7)];
+  const snapshot=createOrderSnapshot(lines,{priced:true,deliveryFor});
+  const texts=[],images=[];
+  const createCanvas=(width,height)=>{
+    const context={measureText:s=>({width:String(s).length*10}),fillText:s=>texts.push(s),fillRect(){},drawImage:image=>images.push(image)};
+    return {width,height,getContext:()=>context};
+  };
+  const closingImage={width:1135,height:1600};
+  const {pages,layout}=renderOrderPages(snapshot,createCanvas,{closingImage});
+  assert.ok(texts.some(s => /^Rp\s*900,000 \+ \u00a5240$/.test(s)));
+  assert.ok(texts.some(s => /^Rp\s*1,800,000 \+ \u00a5240$/.test(s)));
+  assert.equal(pages.length,2);
+  assert.equal(layout.at(-1).closingImage,true);
+  assert.deepEqual(images,[closingImage]);
+});

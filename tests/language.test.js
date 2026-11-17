@@ -22,9 +22,9 @@ test('all three languages cover every interface key and static page label', asyn
       assert.ok(messages.zh[match[1]],`Missing Chinese ${match[1]}`);
       assert.ok(messages.id[match[1]],`Missing Indonesian ${match[1]}`);
     }
-    assert.equal((html.match(/<select\b[^>]*data-language-select/g)||[]).length,3);
+    assert.equal((html.match(/<select\b[^>]*data-language-select/g)||[]).length,2);
     for (const language of ['en','zh','id']) {
-      assert.equal((html.match(new RegExp(`<option value="${language}"`,'g'))||[]).length,3);
+      assert.equal((html.match(new RegExp(`<option value="${language}"`,'g'))||[]).length,2);
     }
   }
   for (const file of ['assets/js/app.js','assets/js/order.js']) {

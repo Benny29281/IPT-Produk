@@ -1,4 +1,5 @@
 {
-  "deliveryFee": 0,
-  "freeShippingMin": 0
+  "deviceDeliveryFee": 120,
+  "tereaSmallDeliveryFee": 400000,
+  "tereaGroupDeliveryFee": 450000
 }

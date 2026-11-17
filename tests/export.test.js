@@ -102,6 +102,8 @@ test('export customer validation requires name and address while phone and posta
   assert.equal(completeOrderingLocation(null),false);
   assert.equal(completeOrderingLocation({country:'China',city:'Shenzhen'}),true);
   const lines=orderLines([base],{'auburn-id:pack':1},{'auburn-id':{pack:30000}});
-  assert.throws(()=>createOrderSnapshot(lines,{requireCustomerDetails:true,customer}),/customer and ordering location/);
+  const snapshot=createOrderSnapshot(lines,{requireCustomerDetails:true,customer});
+  assert.deepEqual(snapshot.customer,customer);
+  assert.equal(snapshot.orderingFrom,undefined);
   assert.throws(()=>createOrderSnapshot(lines,{requireCustomerDetails:true,customer:{...customer,address:''},orderingFrom:{country:'China',city:'Shenzhen'}}));
 });

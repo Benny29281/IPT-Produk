@@ -1,8 +1,9 @@
+import {calculateDelivery,deliverySettings,deliveryAmount} from './delivery.js';
 import { normalizeQuantity, orderLines, formatOrder, displayName, changeProductUnit } from './order.js';
 import { translate } from './i18n.js';
 import {filterCatalog,countryName,editionCountries} from './catalog.js';
 import {createOrderSnapshot} from './order-document.js';
-import {normalizeCustomerDetails,completeCustomerDetails,normalizeOrderingLocation,completeOrderingLocation} from './customer.js';
+import {normalizeCustomerDetails,completeCustomerDetails} from './customer.js';
 
 const config = window.STORE_CONFIG;
 const root = new URL('../../', import.meta.url);
@@ -21,11 +22,6 @@ let galleryProduct = null, galleryIndex = 0;
 let catalogState = 'idle';
 let country = 'all', exporting = false;
 let exportUrls = [];
-let orderingOrigin = null;
-try {
-  const saved = JSON.parse(sessionStorage.getItem('catalog-ordering-location') || 'null');
-  if (completeOrderingLocation(saved)) orderingOrigin = normalizeOrderingLocation(saved);
-} catch {}
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const lines = () => orderLines(products, quantities, prices);
 
@@ -46,7 +42,6 @@ function updateStaticLanguage() {
   const warning = {en:config.healthWarning,zh:config.healthWarningZh,id:config.healthWarningId}[language];
   $('#health-warning').textContent = warning || t('health');
   $('#age-warning').textContent = warning || t('health');
-  renderOrderingLocation();
 }
 updateStaticLanguage();
 try { accepted = sessionStorage.getItem('catalog-age') === String(config.minimumAge); } catch {}
@@ -65,42 +60,14 @@ $('#age-decline').addEventListener('click', () => {
   $('#age-decline').hidden = true;
 });
 
-function renderOrderingLocation() {
-  $('#ordering-location-summary').textContent = completeOrderingLocation(orderingOrigin) ? `${orderingOrigin.city}, ${orderingOrigin.country}` : t('locationTitle');
-}
-function openLocationDialog() {
-  $('#location-country').value = orderingOrigin?.country || '';
-  $('#location-city').value = orderingOrigin?.city || '';
-  $('#location-cancel').hidden = !completeOrderingLocation(orderingOrigin);
-  if (!$('#location-dialog').open) $('#location-dialog').showModal();
-}
 function startCatalog() {
-  if (!completeOrderingLocation(orderingOrigin)) { openLocationDialog(); return; }
   if (!products.length && catalogState !== 'loading') load();
 }
-$('#change-location').addEventListener('click', openLocationDialog);
-$('#location-cancel').addEventListener('click', () => $('#location-dialog').close());
-$('#location-dialog').addEventListener('cancel', event => { if (!completeOrderingLocation(orderingOrigin)) event.preventDefault(); });
-$('#location-form').addEventListener('submit', event => {
-  event.preventDefault();
-  const location = normalizeOrderingLocation({country:$('#location-country').value,city:$('#location-city').value});
-  if (!completeOrderingLocation(location)) {
-    const input = !location.country ? $('#location-country') : $('#location-city');
-    input.setCustomValidity(t('required')); input.reportValidity(); return;
-  }
-  const previous = orderingOrigin;
-  orderingOrigin = location;
-  try { sessionStorage.setItem('catalog-ordering-location',JSON.stringify(location)); } catch {}
-  if (!$('#customer-country').value || $('#customer-country').value === previous?.country) $('#customer-country').value = location.country;
-  if (!$('#customer-city').value || $('#customer-city').value === previous?.city) $('#customer-city').value = location.city;
-  renderOrderingLocation(); $('#location-dialog').close(); startCatalog();
-});
-['#location-country','#location-city'].forEach(selector => $(selector).addEventListener('input', event => event.target.setCustomValidity('')));
 function customerDetails() {
   return normalizeCustomerDetails({name:$('#customer-name').value,phone:$('#customer-phone').value,address:$('#customer-address').value,city:$('#customer-city').value,region:$('#customer-region').value,postalCode:$('#customer-postal').value,country:$('#customer-country').value});
 }
 function hasCustomerInput() {
-  return ['#customer-name','#customer-phone','#customer-address','#customer-region','#customer-postal','#note'].some(selector => $(selector).value.trim()) || $('#customer-country').value !== (orderingOrigin?.country || '') || $('#customer-city').value !== (orderingOrigin?.city || '');
+  return ['#customer-name','#customer-phone','#customer-address','#customer-country','#customer-city','#customer-region','#customer-postal','#note'].some(selector => $(selector).value.trim());
 }
 $('#customer-form').addEventListener('submit', event => event.preventDefault());
 $('#customer-form').addEventListener('input', () => $('#reset').disabled = !lines().length && !hasCustomerInput());
@@ -153,7 +120,7 @@ function renderOrder() {
   $('#order-lines').innerHTML = selected.length ? selected.map(line => `<div class="order-line"><div><strong>${escape(displayName(line.product))}</strong><small>${line.product.nameZh ? `<span lang="zh-Hans">${escape(line.product.nameZh)}</span>` : escape(line.product.variant)}${line.product.country ? ` · ${escape(countryName(line.product.country,language))}` : ''} · ${labels[line.unit]} × ${line.quantity}${priced ? `<br>${line.price === null ? t('unknownPrice') : money(line.price * line.quantity)}` : ''}</small></div><button class="remove-line" data-remove="${escape(`${line.product.id}:${line.unit}`)}" aria-label="${escape(t('remove',{name:displayName(line.product),unit:labels[line.unit]}))}">×</button></div>`).join('') : `<div class="empty-order"><span class="empty-icon" aria-hidden="true">⊞</span><strong>${t('emptyTitle')}</strong><p>${t('emptyHelp')}</p></div>`;
   $('#order-total').hidden = !priced || !selected.length;
   const unknown = selected.some(line => line.price === null), sub = unknown ? 0 : selected.reduce((s,line) => s + line.price * line.quantity, 0), fee = deliveryFor(sub);
-  $('#order-total').innerHTML = `${priced && !unknown && settings.deliveryFee > 0 ? `<span>${t('deliveryFee')}: ${fee ? money(fee) : t('freeDelivery')}</span>` : ''}<span>${t('estimatedTotal')}</span><strong>${unknown ? t('needsConfirmation') : money(sub + fee)}</strong>`;
+  $('#order-total').innerHTML = `${priced && (fee.idr > 0 || fee.deviceFee > 0) ? `<span>${t('deliveryFee')}: ${deliveryAmount(fee.idr,fee.deviceFee,money)}</span>` : ''}<span>${t('estimatedTotal')}</span><strong>${unknown ? t('needsConfirmation') : deliveryAmount(sub + fee.idr,fee.deviceFee,money)}</strong>`;
   $('#copy').disabled = !selected.length;
   $('#reset').disabled = !selected.length && !hasCustomerInput();
   const configured = config.whatsappEnabled !== false && /^[1-9]\d{7,14}$/.test(config.whatsapp);
@@ -283,7 +250,7 @@ $('#photo-dialog').addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft') { event.preventDefault(); $('#photo-prev').click(); }
   if (event.key === 'ArrowRight') { event.preventDefault(); $('#photo-next').click(); }
 });
-const textOrder = () => formatOrder(lines(), {name:$('#customer-name').value,note:$('#note').value,priced,money,language,customer:customerDetails(),orderingFrom:orderingOrigin,deliveryFor});
+const textOrder = () => formatOrder(lines(), {name:$('#customer-name').value,note:$('#note').value,priced,money,language,customer:customerDetails(),deliveryFor});
 $('#send').addEventListener('click', () => {
   if (!accepted || !lines().length || config.whatsappEnabled === false || !/^[1-9]\d{7,14}$/.test(config.whatsapp)) return;
   const url = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(textOrder())}`;
@@ -299,12 +266,11 @@ $('#close-copy').addEventListener('click', () => $('#copy-dialog').close());
 
 $('#export-order').addEventListener('click', async () => {
   if (!accepted || exporting || !lines().length) return;
-  if (!completeOrderingLocation(orderingOrigin)) { openLocationDialog(); return; }
   if (!$('#customer-form').reportValidity() || !completeCustomerDetails(customerDetails())) { notify(t('customerDetailsMissing')); return; }
   exporting = true; renderOrder();
   $('#export-order').textContent = t('exportGenerating');
   try {
-    const snapshot = createOrderSnapshot(lines(),{customer:customerDetails(),orderingFrom:orderingOrigin,requireCustomerDetails:true,note:$('#note').value,priced,language,currency:config.currency,deliveryFor});
+    const snapshot = createOrderSnapshot(lines(),{customer:customerDetails(),requireCustomerDetails:true,note:$('#note').value,priced,language,currency:config.currency,deliveryFor});
     const {renderOrderPages,buildImagePdf,jpegData,loadClosingImage} = await import('./order-export.js');
     const closingImage = await loadClosingImage();
     const {pages} = renderOrderPages(snapshot,undefined,{closingImage});
@@ -326,12 +292,11 @@ $('#reset').addEventListener('click', () => $('#reset-dialog').showModal());
 $('#cancel-reset').addEventListener('click', () => $('#reset-dialog').close());
 $('#confirm-reset').addEventListener('click', () => {
   quantities = {}; selectedUnits = {}; $('#customer-form').reset();
-  $('#customer-country').value = orderingOrigin?.country || ''; $('#customer-city').value = orderingOrigin?.city || '';
   renderProducts(); renderOrder(); $('#reset-dialog').close(); notify(t('cleared'));
 });
 
-let settings = {deliveryFee:0, freeShippingMin:0};
-const deliveryFor = subtotal => settings.freeShippingMin > 0 && subtotal >= settings.freeShippingMin ? 0 : settings.deliveryFee;
+let settings = deliverySettings();
+const deliveryFor = () => calculateDelivery(lines(),settings);
 async function load() {
   catalogState = 'loading';
   $('#products').setAttribute('aria-busy','true');
@@ -343,7 +308,7 @@ async function load() {
     };
     const [pd, prd, sd] = await Promise.all([get('data/products.json'), priced ? get('data/prices.json') : Promise.resolve({}), priced ? get('data/settings.json').catch(() => ({})) : Promise.resolve({})]);
     products = pd.products ?? pd; prices = Array.isArray(prd.prices) ? Object.fromEntries(prd.prices.map(({id,...rest}) => [id,Object.fromEntries(Object.entries(rest).filter(([,v]) => typeof v === 'number'))])) : prd;
-    settings = {deliveryFee:Math.max(0,Number(sd.deliveryFee)||0), freeShippingMin:Math.max(0,Number(sd.freeShippingMin)||0)};
+    settings = deliverySettings(sd);
     if (!Array.isArray(products) || !products.every(p => p.id && p.name && Array.isArray(p.units) && p.units.every(unit => unit in labels))) throw new Error('Invalid product data');
     catalogState = 'ready';
     renderFilters(); renderProducts(); renderOrder();
@@ -371,8 +336,5 @@ document.querySelectorAll('[data-language-select]').forEach(select => select.add
   if ($('#copy-dialog').open) $('#copy-text').value = textOrder();
   $('#toast').hidden = true;
 }));
-if (completeOrderingLocation(orderingOrigin)) {
-  $('#customer-country').value = orderingOrigin.country; $('#customer-city').value = orderingOrigin.city;
-}
 renderOrder();
 if (accepted) startCatalog();

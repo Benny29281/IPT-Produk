@@ -1,5 +1,6 @@
+import {normalizeDelivery} from './delivery.js';
 import {displayName} from './order.js';
-import {normalizeCustomerDetails,normalizeOrderingLocation,completeCustomerDetails,completeOrderingLocation} from './customer.js';
+import {normalizeCustomerDetails,normalizeOrderingLocation,completeCustomerDetails} from './customer.js';
 
 export function createOrderSnapshot(lines, {
   name = '', note = '', priced = false, language = 'en', currency = 'IDR',
@@ -8,7 +9,7 @@ export function createOrderSnapshot(lines, {
   if (!lines.length) throw new Error('An order must contain at least one item');
   const details = normalizeCustomerDetails(customer,name);
   const location = normalizeOrderingLocation(orderingFrom);
-  if (requireCustomerDetails && (!completeCustomerDetails(details) || !completeOrderingLocation(location))) throw new Error('Complete customer and ordering location details are required');
+  if (requireCustomerDetails && !completeCustomerDetails(details)) throw new Error('Complete customer details are required');
   const rows = lines.map(line => {
     if (!Number.isSafeInteger(line.quantity) || line.quantity < 1) throw new Error('Invalid quantity');
     if (line.product.category === 'sticks' && !/^[A-Z]{2}$/.test(line.product.country || '')) throw new Error('A country edition is required for tobacco products');
@@ -34,7 +35,9 @@ export function createOrderSnapshot(lines, {
   if (priced) {
     snapshot.currency = currency;
     const sub = rows.some(row => row.lineTotal === null) ? null : rows.reduce((sum,row) => sum + row.lineTotal,0);
-    snapshot.deliveryFee = sub === null || !deliveryFor ? 0 : deliveryFor(sub);
+    const fee = normalizeDelivery(deliveryFor?.(sub,lines));
+    snapshot.deliveryFee = fee.idr;
+    snapshot.deviceDeliveryFee = fee.deviceFee;
     snapshot.total = sub === null ? null : sub + snapshot.deliveryFee;
   }
   return Object.freeze(snapshot);
