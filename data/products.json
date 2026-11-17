@@ -3448,6 +3448,31 @@
           "valueZh": "IQOS ILUMA 系列设备"
         }
       ]
+    },
+    {
+      "id": "Iqos Iluma i Prime Aspen Green",
+      "category": "device",
+      "name": "Iqos Iluma i Prime",
+      "nameZh": "白杨绿",
+      "variant": "Aspen Green",
+      "color": "#5bd643",
+      "brand": "Iqos",
+      "flavor": "",
+      "country": "ID",
+      "image": "/images/products/1.png",
+      "images": [
+        "/images/products/2.png",
+        "/images/products/3.png",
+        "/images/products/4.png",
+        "/images/products/5.png",
+        "/images/products/6.png",
+        "/images/products/7.png",
+        "/images/products/8.png"
+      ],
+      "units": [
+        "unit"
+      ],
+      "description": "Iqos Iluma i Prime Aspen Green"
     }
   ]
 }
