@@ -1,4 +1,8 @@
 # Ganti repo dan branch sesuai repository GitHub Anda.
+app_title: TOBAPIA Admin
+logo:
+  src: ../images/Tobapia-01.png
+  show_in_header: true
 backend:
   name: github
   repo: Benny29281/IPT-Produk

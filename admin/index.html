@@ -1,4 +1,47 @@
 <!doctype html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>Admin</title></head>
-<body><script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script></body></html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#4b552d">
+  <title>TOBAPIA — Admin</title>
+  <link rel="icon" type="image/png" href="../images/Tobapia-01.png">
+  <link rel="stylesheet" href="admin.css?v=20261117-2">
+  <script src="admin.js?v=20261117-2" defer></script>
+</head>
+<body>
+  <a class="admin-skip" href="#nc-root">Langsung ke panel admin</a>
+  <header class="admin-header">
+    <div class="admin-identity">
+      <img src="../images/Tobapia-01.png" width="500" height="125" alt="TOBAPIA">
+      <span class="admin-divider" aria-hidden="true"></span>
+      <div><strong>Ruang kerja</strong><span>Panel administrasi</span></div>
+    </div>
+    <nav class="admin-navigation" aria-label="Navigasi admin">
+      <button id="help-toggle" type="button" aria-expanded="false" aria-controls="admin-help">Panduan singkat</button>
+      <a href="../" target="_blank" rel="noopener noreferrer">Lihat situs <span aria-hidden="true">↗</span><span class="sr-only"> (tab baru)</span></a>
+    </nav>
+  </header>
+
+  <section id="admin-help" class="admin-help" aria-labelledby="help-title" hidden>
+    <div class="help-heading"><p class="admin-eyebrow">MULAI DARI SINI</p><h1 id="help-title">Satu ruang untuk mengelola konten.</h1><p>Gunakan menu di panel untuk berpindah bagian.</p></div>
+    <ol class="help-steps">
+      <li><span aria-hidden="true">01</span><div><h2>Masuk ke akun</h2><p>Gunakan akun yang memiliki akses ke situs ini.</p></div></li>
+      <li><span aria-hidden="true">02</span><div><h2>Pilih bagian</h2><p>Buka bagian yang ingin diperiksa melalui menu panel.</p></div></li>
+      <li><span aria-hidden="true">03</span><div><h2>Periksa sebelum menyimpan</h2><p>Pastikan isi dan tampilan sudah sesuai sebelum menyimpan perubahan.</p></div></li>
+    </ol>
+  </section>
+
+  <main class="admin-main" aria-label="Panel pengelolaan konten">
+    <div id="admin-loading" class="admin-loading" role="status">
+      <span id="loading-spinner" class="loading-spinner" aria-hidden="true"></span>
+      <p id="loading-title">Menyiapkan ruang kerja…</p>
+      <span id="loading-description">Panel admin akan segera tampil di sini.</span>
+      <button id="retry-loading" type="button" hidden>Coba lagi</button>
+    </div>
+    <div id="nc-root" tabindex="-1" aria-busy="true"><iframe id="cms-frame" title="Editor admin TOBAPIA" data-src="cms.html?v=20261117-2"></iframe></div>
+    <noscript><p class="noscript-notice">Aktifkan JavaScript pada browser untuk membuka panel admin.</p></noscript>
+  </main>
+</body>
+</html>

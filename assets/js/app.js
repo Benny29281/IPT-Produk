@@ -368,7 +368,7 @@ $('#export-order').addEventListener('click', async () => {
     exportUrls.forEach(url => URL.revokeObjectURL(url)); exportUrls = [];
     const pdfUrl = URL.createObjectURL(new Blob([pdf],{type:'application/pdf'})); exportUrls.push(pdfUrl);
     const link = document.createElement('a');
-    if (!pdfFilenames.has(snapshot.id)) pdfFilenames.set(snapshot.id,nextPdfFilename(new Date(snapshot.createdAt)));
+    if (!pdfFilenames.has(snapshot.id)) pdfFilenames.set(snapshot.id,nextPdfFilename(new Date(snapshot.createdAt),snapshot.priced));
     link.href = pdfUrl; link.download = pdfFilenames.get(snapshot.id); link.hidden = true;
     document.body.append(link); link.click(); link.remove();
     notify(t('exportReady',{count:pages.length}));

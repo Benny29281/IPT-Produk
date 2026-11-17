@@ -1,10 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {createOrderSnapshot} from '../assets/js/order-document.js';
+import {createOrderSnapshot,nextPdfFilename} from '../assets/js/order-document.js';
 import {filterCatalog,countryName} from '../assets/js/catalog.js';
 import {orderLines,formatOrder} from '../assets/js/order.js';
 import {normalizeCustomerDetails,completeCustomerDetails,completeOrderingLocation} from '../assets/js/customer.js';
+
+test('PDF filenames use five-digit daily numbering and the correct price code', () => {
+  const values=new Map();
+  const storage={getItem:key=>values.get(key),setItem:(key,value)=>values.set(key,value)};
+  const date=new Date(2026,10,17,12);
+  assert.equal(nextPdfFilename(date,false,storage),'20261117_00001_03.pdf');
+  assert.equal(nextPdfFilename(date,true,storage),'20261117_00002_05.pdf');
+  assert.equal(nextPdfFilename(new Date(2026,10,18,12),true,storage),'20261118_00001_05.pdf');
+  values.set('tobapia-pdf-sequence-20261119','41');
+  assert.equal(nextPdfFilename(new Date(2026,10,19,12),false,storage),'20261119_00042_03.pdf');
+});
 
 const base={id:'auburn-id',familyId:'auburn',category:'sticks',brand:'TEREA',name:'Auburn Edition',nameZh:'赤棕',country:'ID',units:['pack','carton']};
 const products=[base,{...base,id:'auburn-kr',country:'KR'},{...base,id:'auburn-jp',country:'JP'},{id:'device',category:'device',model:'IQOS',name:'IQOS',units:['unit']}];

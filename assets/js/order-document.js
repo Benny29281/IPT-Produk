@@ -4,7 +4,7 @@ import {normalizeCustomerDetails,normalizeOrderingLocation,completeCustomerDetai
 
 const pdfSequences = new Map();
 
-export function nextPdfFilename(date = new Date(), storage) {
+export function nextPdfFilename(date = new Date(), priced = false, storage) {
   if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new Error('Invalid PDF date');
   const day = `${date.getFullYear()}${String(date.getMonth()+1).padStart(2,'0')}${String(date.getDate()).padStart(2,'0')}`;
   const key = `tobapia-pdf-sequence-${day}`;
@@ -15,10 +15,10 @@ export function nextPdfFilename(date = new Date(), storage) {
     if (Number.isSafeInteger(saved) && saved >= 0) previous = Math.max(previous,saved);
   } catch {}
   const next = previous + 1;
-  if (next > 999999) throw new Error('Daily PDF sequence limit reached');
+  if (next > 99999) throw new Error('Daily PDF sequence limit reached');
   pdfSequences.set(day,next);
   try { storage?.setItem(key,String(next)); } catch {}
-  return `${day}_${String(next).padStart(6,'0')}.pdf`;
+  return `${day}_${String(next).padStart(5,'0')}_${priced ? '05' : '03'}.pdf`;
 }
 
 export function createOrderSnapshot(lines, {
