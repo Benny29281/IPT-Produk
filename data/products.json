@@ -3448,31 +3448,6 @@
           "valueZh": "IQOS ILUMA 系列设备"
         }
       ]
-    },
-    {
-      "id": "iqos-iluma-i-prime-aspen-green",
-      "category": "device",
-      "name": "Iqos Iluma i Prime Aspen Green",
-      "nameZh": "Iqos Iluma i Prime 白杨绿",
-      "variant": "Aspen Green",
-      "color": "#146c22",
-      "brand": "",
-      "flavor": "",
-      "country": "",
-      "image": "/images/products/1.png",
-      "images": [
-        "/images/products/2.png",
-        "/images/products/3.png",
-        "/images/products/4.png",
-        "/images/products/5.png",
-        "/images/products/7.png",
-        "/images/products/8.png",
-        "/images/products/6.png"
-      ],
-      "units": [
-        "unit"
-      ],
-      "description": "Iqos Iluma i Prime in Aspen Green. A heated tobacco device for TEREA sticks, with Touch Screen and Pause Mode."
     }
   ]
 }
