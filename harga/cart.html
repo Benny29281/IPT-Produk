@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Browse products, choose quantities and send your order through WhatsApp. English and Chinese product catalog.">
+  <meta name="theme-color" content="#183e35">
+  <title>Order catalog | FORM &amp; CO.</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../config.js" defer></script>
+  <script type="module" src="../assets/js/app.js"></script>
+</head>
+<body data-priced="true" data-page="checkout">
+  <a class="skip" href="#order" data-i18n="viewCart">View cart</a>
+  <header class="header"><a class="brand" href="./" aria-label="Home" data-i18n-aria="home"><span class="brand-icon">f.</span><span data-store-name>FORM &amp; CO.</span><span class="brand-dot" aria-hidden="true"></span></a><div class="header-tools"><a id="header-cart" class="header-cart" href="cart.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h2l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span data-i18n="cartTitle">Cart</span><b id="header-cart-count">0</b></a><span class="header-note"><span data-i18n="catalog">Order catalog</span> <span class="adult-badge" data-age-label>21+</span></span><select class="language-select" data-language-select aria-label="Language" data-i18n-aria="language"><option value="en" lang="en">English</option><option value="id" lang="id">Indonesia</option><option value="zh" lang="zh-Hans">&#20013;&#25991;</option></select></div></header>
+  <main>
+    <div id="demo-notice" class="demo-notice" data-i18n="stockNotice" hidden>Please confirm availability with the seller before ordering.</div>
+    <div class="workspace"><a id="continue-shopping" class="continue-shopping" href="index.html"><span aria-hidden="true">&larr;</span> <span data-i18n="continueShopping">Continue shopping</span></a>
+      <section id="catalog" hidden class="catalog" aria-label="Product catalog" data-i18n-aria="catalogAria">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" placeholder="Search products, colors or flavours..." aria-label="Search products, colors or flavours" data-i18n-placeholder="search" data-i18n-aria="search"></div>
+        <div class="country-filter"><span id="country-filter-label" data-i18n="countryEdition">Country edition</span><div id="country-options" class="country-options" role="group" aria-labelledby="country-filter-label"><button type="button" data-country="all" class="active" aria-pressed="true" data-i18n="allCountries">All editions</button><button type="button" data-country="ID" aria-pressed="false" data-i18n="countryIndonesia">Indonesia</button><button type="button" data-country="KR" aria-pressed="false" data-i18n="countryKorea">South Korea</button><button type="button" data-country="JP" aria-pressed="false" data-i18n="countryJapan">Japan</button></div></div>
+        <div class="catalog-toolbar"><div class="filters" role="group" aria-label="Product categories" data-i18n-aria="categories"><button class="active" data-category="all" aria-pressed="true" data-i18n="all">All products</button><button data-category="sticks" aria-pressed="false">TEREA</button><button data-category="Iqos Iluma i" aria-pressed="false">IQOS ILUMA i</button><button data-category="Iqos Iluma i One" aria-pressed="false">IQOS ILUMA i ONE</button><button data-category="Iqos Iluma i Prime" aria-pressed="false">IQOS ILUMA i PRIME</button></div><span id="product-count" data-i18n="loading">Loading...</span></div>
+        <div id="products" class="product-grid" aria-busy="true"></div>
+        <div id="catalog-message" class="catalog-message" role="status" hidden></div>
+        <p class="catalog-footnote" data-i18n="footnote">TEREA: 20 sticks per pack, 10 packs (200 sticks) per carton. Devices are ordered individually.</p>
+      </section>
+      <aside id="order" class="order-panel" aria-label="Order summary" data-i18n-aria="orderAria">
+        <div class="order-heading"><div><p class="eyebrow" data-i18n="yourSelection">YOUR SELECTION</p><h2 id="order-heading" tabindex="-1" data-i18n="cartTitle">Shopping cart</h2></div><span id="line-count" class="count">0</span></div>
+        <ol class="checkout-progress" aria-label="Checkout" data-i18n-aria="checkoutProgress"><li data-checkout-step="cart" aria-current="step"><b>1</b><span data-i18n="cartTitle">Cart</span></li><li data-checkout-step="address"><b>2</b><span data-i18n="addressStep">Address</span></li><li data-checkout-step="payment"><b>3</b><span data-i18n="paymentStep">Payment</span></li></ol>
+        <div class="order-scroll"><div id="cart-review"><div id="order-lines"></div></div>
+        <div id="order-total" class="order-total" hidden></div>
+        <form id="customer-form" class="customer-fields" hidden>
+          <label for="customer-name"><span data-i18n="customerName">Name</span> *</label><input id="customer-name" maxlength="80" autocomplete="name" placeholder="Your name" data-i18n-placeholder="namePlaceholder" required>
+          <label for="customer-phone"><span data-i18n="contactPhone">Contact number</span> *</label><input id="customer-phone" type="tel" maxlength="40" autocomplete="tel" data-i18n-placeholder="phonePlaceholder" placeholder="Phone number including country code" required>
+          <label for="customer-country"><span data-i18n="deliveryCountry">Destination country/region</span> *</label><input id="customer-country" maxlength="80" autocomplete="shipping country-name" required>
+          <label for="customer-city"><span data-i18n="deliveryCity">City</span> *</label><input id="customer-city" maxlength="80" autocomplete="shipping address-level2" required>
+          <label for="customer-region"><span data-i18n="deliveryRegion">State/province</span> *</label><input id="customer-region" maxlength="80" autocomplete="shipping address-level1" required>
+          <label for="customer-address"><span data-i18n="addressLine">Full address</span> *</label><textarea id="customer-address" maxlength="600" rows="3" autocomplete="shipping street-address" data-i18n-placeholder="addressPlaceholder" placeholder="Street, building number, unit, district and landmarks" required></textarea>
+          <label for="customer-postal"><span data-i18n="postalCode">Postal code</span> *</label><input id="customer-postal" maxlength="32" autocomplete="shipping postal-code" required>
+          <label for="note"><span data-i18n="note">Order notes</span> <span data-i18n="optional">optional</span></label><textarea id="note" maxlength="500" rows="2" placeholder="Anything we should know?" data-i18n-placeholder="notePlaceholder"></textarea>
+        </form>
+        <section id="payment-panel" class="payment-panel" hidden aria-labelledby="payment-title"><p class="payment-kicker" data-i18n="paymentTo">PAY TO</p><h3 id="payment-title">Indonesia Pacific Trade</h3><p id="payment-reference" class="payment-reference"></p><div id="payment-recipient" class="payment-recipient"></div><p data-i18n="paymentHelp">Scan the QRIS code below using your payment app.</p><img id="payment-qr" width="1135" height="1600" alt="QRIS Indonesia Pacific Trade" loading="lazy"><p id="payment-image-error" role="status" data-i18n="paymentImageError" hidden>The payment image could not load. Please reload this page.</p><p class="payment-note" data-i18n="paymentNote">Payment is confirmed by the seller. Download your order details for reference.</p></section>
+        </div><div class="order-actions">
+        <button id="checkout-next" class="primary" data-i18n="checkout" disabled>Checkout</button>
+        <button id="continue-payment" class="primary" type="submit" form="customer-form" data-i18n="continuePayment" hidden>Continue to payment</button>
+        <button id="checkout-back" class="checkout-back" data-i18n="backToCart" hidden>Back to cart</button>
+        <button id="export-order" class="primary" hidden data-i18n="exportPdf" disabled>Download PDF</button>
+        <button id="send" class="primary whatsapp-action" disabled hidden><span aria-hidden="true">&nearr;</span> <span data-i18n="send">Send via WhatsApp</span></button><p id="send-help" class="send-help" hidden></p>
+        <div class="secondary-actions"><button id="copy" data-i18n="copy" disabled>Copy order</button><button id="reset" data-i18n="reset" disabled>Clear order</button></div>
+        <p class="order-note"><span aria-hidden="true">&#8977;</span><span data-i18n="checkoutNote">Review your cart, enter your address, then continue to payment.</span></p></div>
+      </aside>
+    </div>
+    <section class="health-note"><span class="adult-badge" data-age-label>21+</span><p><strong data-i18n="adults">For adults only.</strong> <span id="health-warning"></span></p></section>
+  </main>
+  <footer><span data-store-name>FORM &amp; CO.</span><span data-i18n="footer">Product catalog</span><span id="version-label"></span></footer>
+  <a id="mobile-cart" href="cart.html" class="mobile-cart" hidden><span data-i18n="viewCart">View cart</span><span id="mobile-count">0 items</span></a>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <dialog id="age-gate" aria-labelledby="age-title"><div class="age-content"><div class="age-tools"><span class="brand-icon">f.</span><select class="language-select" data-language-select aria-label="Language" data-i18n-aria="language"><option value="en" lang="en">English</option><option value="id" lang="id">Indonesia</option><option value="zh" lang="zh-Hans">&#20013;&#25991;</option></select></div><p class="eyebrow" data-i18n="beforeContinue">BEFORE YOU CONTINUE</p><h2 id="age-title" data-i18n="ageTitle">Age confirmation</h2><p data-i18n="ageCopy">This catalog contains tobacco products and related devices. By continuing, you confirm that you are at least 21 years old.</p><p id="age-warning" class="age-warning"></p><button id="age-accept" class="primary" data-i18n="ageAccept">I am 21 or older</button><button id="age-decline" class="decline" data-i18n="ageDecline">I am under 21</button><p id="age-declined" role="status" data-i18n="ageDeclined" hidden>You cannot access this catalog. Please close this page.</p></div></dialog>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><div class="age-content"><h2 id="reset-title" data-i18n="resetTitle">Clear your order?</h2><p data-i18n="resetCopy">Quantities, name, address and notes will be cleared.</p><button id="confirm-reset" class="primary" data-i18n="confirmReset">Yes, clear order</button><button id="cancel-reset" class="decline" data-i18n="back">Go back</button></div></dialog>
+  <dialog id="copy-dialog" aria-labelledby="copy-title"><div class="age-content"><h2 id="copy-title" data-i18n="manualCopy">Copy your order</h2><p data-i18n="manualCopyHelp">Automatic copying is unavailable. Select and copy the text below.</p><textarea id="copy-text" rows="10" readonly aria-label="Order text" data-i18n-aria="orderText"></textarea><button id="close-copy" class="primary" data-i18n="done">Done</button></div></dialog>
+  <dialog id="photo-dialog" class="photo-dialog" aria-labelledby="photo-title"><div class="photo-header"><h2 id="photo-title"></h2><button id="photo-close" aria-label="Close product details" data-i18n-aria="closeDetails">&times;</button></div><div class="product-detail-layout"><div class="product-detail-gallery"><div class="photo-stage"><img id="photo-main" alt=""></div><div class="photo-controls"><button id="photo-prev" aria-label="Previous photo" data-i18n-aria="previousAria" data-i18n="previous">&larr; Previous</button><span id="photo-position" role="status"></span><button id="photo-next" aria-label="Next photo" data-i18n-aria="nextAria" data-i18n="next">Next &rarr;</button></div><div id="photo-thumbs" class="photo-thumbs" role="group" aria-label="Select a product photo" data-i18n-aria="selectPhoto"></div></div><div id="product-detail-content" class="product-detail-content"></div></div></dialog>
+</body>
+</html>

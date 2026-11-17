@@ -28,7 +28,7 @@ function wrapText(context, value, width) {
 
 export function renderOrderPages(snapshot, createCanvas = (width,height) => {
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height; return canvas;
-}, {closingImage} = {}) {
+}) {
   const t = key => translate(snapshot.language,key);
   const money = value => new Intl.NumberFormat('en-US',{style:'currency',currency:snapshot.currency || 'IDR',currencyDisplay:'narrowSymbol',maximumFractionDigits:0}).format(value);
   const pages = [], layout = [];
@@ -136,19 +136,6 @@ export function renderOrderPages(snapshot, createCanvas = (width,height) => {
   }
   font(17); const disclaimer = wrapText(ctx,t('exportDocumentNote'),RIGHT - LEFT);
   ensure(disclaimer.length * 25 + 20); lines(disclaimer,LEFT,y,17,false,'#7b887f',25);
-  if (closingImage) {
-    const imageWidth = closingImage.naturalWidth || closingImage.width;
-    const imageHeight = closingImage.naturalHeight || closingImage.height;
-    if (!(imageWidth > 0 && imageHeight > 0)) throw new Error('Closing image is unavailable');
-    const closingPage = createCanvas(PAGE_WIDTH,PAGE_HEIGHT);
-    const closingContext = closingPage.getContext('2d');
-    if (!closingContext) throw new Error('Canvas is unavailable');
-    closingContext.fillStyle = '#fff'; closingContext.fillRect(0,0,PAGE_WIDTH,PAGE_HEIGHT);
-    const scale = Math.min((RIGHT - LEFT) / imageWidth,(FOOTER_Y - 100) / imageHeight);
-    const width = imageWidth * scale, height = imageHeight * scale;
-    closingContext.drawImage(closingImage,(PAGE_WIDTH - width) / 2,(FOOTER_Y - height) / 2,width,height);
-    pages.push(closingPage); layout.push({rows:[],closingImage:true});
-  }
   pages.forEach((page,index) => {
     ctx = page.getContext('2d'); ctx.textBaseline = 'top';
     rule(FOOTER_Y - 12); text(snapshot.id,LEFT,FOOTER_Y,15,false,'#8a958e');
@@ -156,15 +143,6 @@ export function renderOrderPages(snapshot, createCanvas = (width,height) => {
     font(16); text(pageText,RIGHT - ctx.measureText(pageText).width,FOOTER_Y,16,false,'#7c8c80');
   });
   return {pages,layout};
-}
-
-export function loadClosingImage() {
-  return new Promise((resolve,reject) => {
-    const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = () => reject(new Error('Could not load the PDF closing image'));
-    image.src = new URL('../../images/pdf-closing.png.jpeg',import.meta.url).href;
-  });
 }
 
 export function jpegData(canvas) {

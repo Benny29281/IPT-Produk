@@ -10,7 +10,7 @@ export function normalizeCustomerDetails(customer = {}, fallbackName = '') {
 export function completeCustomerDetails(customer) {
   const details = normalizeCustomerDetails(customer);
   const limits = {name:80,phone:40,address:600,city:80,region:80,postalCode:32,country:80};
-  return ['name','address','city','country'].every(key => details[key].length > 0) && Object.entries(limits).every(([key,max]) => details[key].length <= max);
+  return ['name','phone','address','city','region','postalCode','country'].every(key => details[key].length > 0) && Object.entries(limits).every(([key,max]) => details[key].length <= max);
 }
 
 export function normalizeOrderingLocation(location = {}) {

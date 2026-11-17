@@ -8,6 +8,10 @@ import {normalizeCustomerDetails,completeCustomerDetails} from './customer.js';
 const config = window.STORE_CONFIG;
 const root = new URL('../../', import.meta.url);
 const priced = document.body.dataset.priced === 'true';
+const checkoutPage = document.body.dataset.page === 'checkout';
+const catalogUrl = new URL(priced ? 'harga/' : './',root).href;
+const cartUrl = new URL(priced ? 'harga/cart.html' : 'cart.html',root).href;
+const cartStorageKey = `catalog-cart-v1-${priced ? 'priced' : 'unpriced'}`;
 const $ = selector => document.querySelector(selector);
 const supportedLanguages = ['en','zh','id'];
 let language = supportedLanguages.includes(config.defaultLanguage) ? config.defaultLanguage : 'en';
@@ -17,7 +21,8 @@ const money = value => new Intl.NumberFormat(config.locale, {style:'currency', c
 const labels = {pack:'Pack', carton:'Carton', unit:'Unit'};
 const descriptions = {pack:'20 sticks', carton:'10 packs', unit:'Device'};
 let products = [], prices = {}, quantities = {}, category = 'all', accepted = false, toastTimer;
-let selectedUnits = {};
+let selectedUnits = {}, draftQuantities = {};
+let checkoutStep = 'cart', paymentSnapshot = null;
 let galleryProduct = null, galleryIndex = 0;
 let catalogState = 'idle';
 let country = 'all', exporting = false;
@@ -27,11 +32,14 @@ const lines = () => orderLines(products, quantities, prices);
 
 document.querySelectorAll('[data-store-name]').forEach(el => el.textContent = config.name);
 document.querySelectorAll('[data-age-label]').forEach(el => el.textContent = `${config.minimumAge}+`);
-$('.brand').href = root.href;
+$('.brand').href = catalogUrl;
+$('#header-cart').href = cartUrl;
+$('#mobile-cart').href = cartUrl;
+if (checkoutPage) $('#continue-shopping').href = catalogUrl;
 $('#demo-notice').hidden = !config.demo;
 function updateStaticLanguage() {
   document.documentElement.lang = language === 'zh' ? 'zh-Hans' : language;
-  document.title = `${t('catalog')} | ${config.name}`;
+  document.title = `${t(checkoutPage ? 'cartTitle' : 'catalog')} | ${config.name}`;
   document.querySelectorAll('[data-i18n]').forEach(element => element.textContent = t(element.dataset.i18n));
   document.querySelectorAll('[data-i18n-placeholder]').forEach(element => element.placeholder = t(element.dataset.i18nPlaceholder));
   document.querySelectorAll('[data-i18n-aria]').forEach(element => element.setAttribute('aria-label', t(element.dataset.i18nAria)));
@@ -69,8 +77,71 @@ function customerDetails() {
 function hasCustomerInput() {
   return ['#customer-name','#customer-phone','#customer-address','#customer-country','#customer-city','#customer-region','#customer-postal','#note'].some(selector => $(selector).value.trim());
 }
-$('#customer-form').addEventListener('submit', event => event.preventDefault());
-$('#customer-form').addEventListener('input', () => $('#reset').disabled = !lines().length && !hasCustomerInput());
+$('#customer-form').addEventListener('submit', event => {
+  event.preventDefault();
+  if (!accepted || !lines().length || !$('#customer-form').reportValidity()) return;
+  if (!completeCustomerDetails(customerDetails())) { notify(t('customerDetailsMissing')); return; }
+  paymentSnapshot = createOrderSnapshot(lines(),{customer:customerDetails(),requireCustomerDetails:true,note:$('#note').value,priced,language,currency:config.currency,deliveryFor});
+  setCheckoutStep('payment');
+});
+$('#checkout-next').addEventListener('click', () => { if (accepted && lines().length) setCheckoutStep('address'); });
+$('#checkout-back').addEventListener('click', () => setCheckoutStep(checkoutStep === 'payment' ? 'address' : 'cart'));
+$('#payment-qr').src = new URL('images/pdf-closing.png.jpeg',root).href;
+$('#payment-qr').addEventListener('error', () => $('#payment-image-error').hidden = false);
+$('#payment-qr').addEventListener('load', () => $('#payment-image-error').hidden = true);
+function setCheckoutStep(step) {
+  checkoutStep = step;
+  if (step !== 'payment') paymentSnapshot = null;
+  renderOrder();
+  $('#order').scrollIntoView({behavior:'smooth',block:'start'});
+  if (step === 'address') $('#customer-name').focus({preventScroll:true});
+  else $('#order-heading').focus({preventScroll:true});
+}
+function renderCheckout() {
+  const isCart = checkoutStep === 'cart', isAddress = checkoutStep === 'address', isPayment = checkoutStep === 'payment';
+  $('#order-heading').textContent = t(isCart ? 'cartTitle' : isAddress ? 'shippingAddress' : 'paymentStep');
+  $('#cart-review').hidden = !isCart;
+  $('#customer-form').hidden = !isAddress;
+  $('#payment-panel').hidden = !isPayment;
+  $('#checkout-next').hidden = !isCart;
+  $('#checkout-next').disabled = !lines().length || !accepted;
+  $('#continue-payment').hidden = !isAddress;
+  $('#checkout-back').hidden = isCart;
+  $('#checkout-back').textContent = t(isPayment ? 'editAddress' : 'backToCart');
+  $('#export-order').hidden = !isPayment;
+  $('#export-order').disabled = !isPayment || !paymentSnapshot || exporting;
+  document.querySelectorAll('[data-checkout-step]').forEach((item,index) => {
+    const active = item.dataset.checkoutStep === checkoutStep;
+    if (active) item.setAttribute('aria-current','step'); else item.removeAttribute('aria-current');
+    item.classList.toggle('complete',index < ['cart','address','payment'].indexOf(checkoutStep));
+  });
+  if (isPayment && paymentSnapshot) {
+    $('#payment-reference').textContent = paymentSnapshot.id;
+    const c = paymentSnapshot.customer;
+    $('#payment-recipient').textContent = [c.name,c.address,[c.city,c.region,c.postalCode].filter(Boolean).join(', '),c.country].join('\n');
+  }
+}
+$('#customer-form').addEventListener('input', () => {
+  $('#reset').disabled = !lines().length && !hasCustomerInput();
+  saveCart();
+});
+function saveCart() {
+  try {
+    sessionStorage.setItem(cartStorageKey,JSON.stringify({quantities,customer:customerDetails(),note:$('#note').value}));
+  } catch {}
+}
+function restoreCart() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(cartStorageKey) || 'null');
+    if (!saved || typeof saved !== 'object') return;
+    quantities = Object.fromEntries(Object.entries(saved.quantities || {}).map(([key,value]) => [key,normalizeQuantity(value,config.maxQuantity)]));
+    const details = normalizeCustomerDetails(saved.customer);
+    for (const [field,key] of Object.entries({name:'name',phone:'phone',country:'country',city:'city',region:'region',address:'address',postal:'postalCode'})) {
+      $('#customer-'+field).value = details[key];
+    }
+    $('#note').value = String(saved.note || '').slice(0,500);
+  } catch {}
+}
 
 function notify(text) {
   clearTimeout(toastTimer);
@@ -90,7 +161,7 @@ function renderPurchaseControls(product) {
   const multiple = product.units.length > 1;
   const unit = multiple ? selectedUnits[product.id] || '' : product.units[0];
   const key = unit ? `${product.id}:${unit}` : '';
-  const quantity = key ? quantities[key] || 0 : 0;
+  const quantity = key ? draftQuantities[key] || 1 : 1;
   const price = prices[product.id]?.[unit];
   const choices = multiple ? `<fieldset class="unit-choice" aria-label="${escape(t('unitFor',{name:displayName(product)}))}"><div class="unit-options">${product.units.map(option => {
     const optionPrice = prices[product.id]?.[option];
@@ -98,7 +169,7 @@ function renderPurchaseControls(product) {
     const amount = quantities[`${product.id}:${option}`] || 0;
     return `<input type="radio" id="${escape(id)}" name="unit-${escape(product.id)}" value="${option}" data-unit-product="${escape(product.id)}" ${unit === option ? 'checked' : ''}><label for="${escape(id)}"><span>${labels[option]} <b class="unit-quantity" data-unit-quantity="${escape(`${product.id}:${option}`)}" aria-hidden="true" ${amount ? '' : 'hidden'}>${amount}</b></span><small>${descriptions[option]}</small>${priced ? `<span class="unit-option-price">${typeof optionPrice === 'number' && optionPrice > 0 ? money(optionPrice) : t('askPrice')}</span>` : ''}</label>`;
   }).join('')}</div></fieldset>` : '';
-  return `${choices}${multiple ? `<p class="unit-hint">${t(unit ? 'mixedUnitsHint' : 'chooseUnit')}</p>` : ''}<div class="quantity-row"><label class="unit-label" for="qty-${escape(product.id)}">${unit ? labels[unit] : t('quantity')}<small>${unit ? descriptions[unit] : ''}</small>${priced && !multiple ? `<span class="unit-price">${typeof price === 'number' && price > 0 ? money(price) : t('askPrice')}</span>` : ''}</label><div class="stepper"><button data-change="-1" data-key="${escape(key)}" aria-label="${escape(t('decrease',{name:displayName(product),unit:unit ? labels[unit] : t('quantity')}))}" ${!unit || !quantity ? 'disabled' : ''}>−</button><input id="qty-${escape(product.id)}" data-key="${escape(key)}" type="number" min="0" max="${config.maxQuantity}" step="1" inputmode="numeric" value="${quantity}" ${!unit ? 'disabled' : ''}><button data-change="1" data-key="${escape(key)}" aria-label="${escape(t('increase',{name:displayName(product),unit:unit ? labels[unit] : t('quantity')}))}" ${!unit || quantity >= config.maxQuantity ? 'disabled' : ''}>+</button></div></div>`;
+  return `${choices}${multiple ? `<p class="unit-hint">${t(unit ? 'mixedUnitsHint' : 'chooseUnit')}</p>` : ''}<div class="quantity-row"><label class="unit-label" for="qty-${escape(product.id)}">${unit ? labels[unit] : t('quantity')}<small>${unit ? descriptions[unit] : ''}</small>${priced && !multiple ? `<span class="unit-price">${typeof price === 'number' && price > 0 ? money(price) : t('askPrice')}</span>` : ''}</label><div class="stepper"><button data-change="-1" data-key="${escape(key)}" aria-label="${escape(t('decrease',{name:displayName(product),unit:unit ? labels[unit] : t('quantity')}))}" ${!unit || quantity <= 1 ? 'disabled' : ''}>−</button><input id="qty-${escape(product.id)}" data-key="${escape(key)}" type="number" min="1" max="${config.maxQuantity}" step="1" inputmode="numeric" value="${quantity}" ${!unit ? 'disabled' : ''}><button data-change="1" data-key="${escape(key)}" aria-label="${escape(t('increase',{name:displayName(product),unit:unit ? labels[unit] : t('quantity')}))}" ${!unit || quantity >= config.maxQuantity ? 'disabled' : ''}>+</button></div></div><button class="add-to-cart" data-add-cart="${escape(key)}" ${!unit ? 'disabled' : ''}>${t('addToCart')}</button>`;
 }
 function renderProducts() {
   const filtered = filterCatalog(products,{category,country,query:$('#search').value});
@@ -129,26 +200,27 @@ function renderOrder() {
   $('#send-help').hidden = config.whatsappEnabled === false;
   $('#send').disabled = !selected.length || !configured;
   $('#send-help').textContent = configured ? '' : t('whatsappUnavailable');
-  $('#mobile-cart').hidden = !selected.length;
+  $('#mobile-cart').hidden = checkoutPage || !selected.length;
+  $('#header-cart-count').textContent = selected.reduce((sum,line) => sum + line.quantity,0);
   $('#mobile-count').textContent = t('itemCount',{count:selected.length});
+  renderCheckout();
 }
 function updateQuantity(key, value) {
   if (!key) return;
   quantities[key] = normalizeQuantity(value, config.maxQuantity);
-  document.querySelectorAll('.stepper input').forEach(input => {
-    if (input.dataset.key !== key) return;
-    input.value = quantities[key];
-    input.previousElementSibling.disabled = quantities[key] === 0;
-    input.nextElementSibling.disabled = quantities[key] === config.maxQuantity;
-  });
-  document.querySelectorAll('[data-unit-quantity]').forEach(badge => {
-    if (badge.dataset.unitQuantity === key) { badge.textContent = quantities[key]; badge.hidden = quantities[key] === 0; }
-  });
-  document.querySelectorAll('[data-product]').forEach(card => {
-    const product = products.find(p => p.id === card.dataset.product);
-    card.classList.toggle('selected', product.units.some(unit => quantities[`${product.id}:${unit}`] > 0));
-  });
-  renderOrder();
+  checkoutStep = 'cart'; paymentSnapshot = null;
+  saveCart();
+  renderProducts(); renderOrder();
+}
+function updateDraft(key,value) {
+  if (!key) return;
+  draftQuantities[key] = Math.max(1,normalizeQuantity(value,config.maxQuantity));
+  const input = [...document.querySelectorAll('.stepper input')].find(input => input.dataset.key === key);
+  if (input) {
+    input.value = draftQuantities[key];
+    input.previousElementSibling.disabled = draftQuantities[key] <= 1;
+    input.nextElementSibling.disabled = draftQuantities[key] >= config.maxQuantity;
+  }
 }
 $('#products').addEventListener('click', event => {
   const photo = event.target.closest('[data-gallery]') || (event.target.closest('.purchase-controls') ? null : event.target.closest('[data-product]'));
@@ -160,11 +232,19 @@ $('#products').addEventListener('click', event => {
     $('#photo-dialog').showModal();
     return;
   }
+  const add = event.target.closest('[data-add-cart]');
+  if (add && add.dataset.addCart) {
+    const key = add.dataset.addCart;
+    updateQuantity(key,(quantities[key] || 0) + (draftQuantities[key] || 1));
+    notify(t('addedToCart'));
+    [...document.querySelectorAll('[data-add-cart]')].find(button => button.dataset.addCart === key)?.focus({preventScroll:true});
+    return;
+  }
   const button = event.target.closest('[data-change]');
-  if (button) updateQuantity(button.dataset.key, (quantities[button.dataset.key] || 0) + Number(button.dataset.change));
+  if (button) updateDraft(button.dataset.key, (draftQuantities[button.dataset.key] || 1) + Number(button.dataset.change));
 });
 $('#products').addEventListener('input', event => {
-  if (event.target.matches('input[data-key]')) updateQuantity(event.target.dataset.key, event.target.value);
+  if (event.target.matches('input[data-key]')) updateDraft(event.target.dataset.key, event.target.value);
 });
 $('#products').addEventListener('change', event => {
   if (!event.target.matches('[data-unit-product]')) return;
@@ -265,15 +345,14 @@ $('#copy').addEventListener('click', async () => {
 $('#close-copy').addEventListener('click', () => $('#copy-dialog').close());
 
 $('#export-order').addEventListener('click', async () => {
-  if (!accepted || exporting || !lines().length) return;
+  if (!accepted || exporting || checkoutStep !== 'payment' || !paymentSnapshot) return;
   if (!$('#customer-form').reportValidity() || !completeCustomerDetails(customerDetails())) { notify(t('customerDetailsMissing')); return; }
   exporting = true; renderOrder();
   $('#export-order').textContent = t('exportGenerating');
   try {
-    const snapshot = createOrderSnapshot(lines(),{customer:customerDetails(),requireCustomerDetails:true,note:$('#note').value,priced,language,currency:config.currency,deliveryFor});
-    const {renderOrderPages,buildImagePdf,jpegData,loadClosingImage} = await import('./order-export.js');
-    const closingImage = await loadClosingImage();
-    const {pages} = renderOrderPages(snapshot,undefined,{closingImage});
+    const snapshot = {...paymentSnapshot,language};
+    const {renderOrderPages,buildImagePdf,jpegData} = await import('./order-export.js');
+    const {pages} = renderOrderPages(snapshot);
     const pdf = buildImagePdf(pages.map(page => ({width:page.width,height:page.height,data:jpegData(page)})));
     exportUrls.forEach(url => URL.revokeObjectURL(url)); exportUrls = [];
     const pdfUrl = URL.createObjectURL(new Blob([pdf],{type:'application/pdf'})); exportUrls.push(pdfUrl);
@@ -291,7 +370,8 @@ $('#export-order').addEventListener('click', async () => {
 $('#reset').addEventListener('click', () => $('#reset-dialog').showModal());
 $('#cancel-reset').addEventListener('click', () => $('#reset-dialog').close());
 $('#confirm-reset').addEventListener('click', () => {
-  quantities = {}; selectedUnits = {}; $('#customer-form').reset();
+  quantities = {}; selectedUnits = {}; draftQuantities = {}; checkoutStep = 'cart'; paymentSnapshot = null; $('#customer-form').reset();
+  saveCart();
   renderProducts(); renderOrder(); $('#reset-dialog').close(); notify(t('cleared'));
 });
 
@@ -336,5 +416,12 @@ document.querySelectorAll('[data-language-select]').forEach(select => select.add
   if ($('#copy-dialog').open) $('#copy-text').value = textOrder();
   $('#toast').hidden = true;
 }));
+restoreCart();
+window.addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  restoreCart(); checkoutStep = 'cart'; paymentSnapshot = null;
+  if (catalogState === 'ready') renderProducts();
+  renderOrder();
+});
 renderOrder();
 if (accepted) startCatalog();

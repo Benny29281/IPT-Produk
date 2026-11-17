@@ -14,7 +14,7 @@ test('all three languages cover every interface key and static page label', asyn
       assert.doesNotMatch(result,/\{\w+\}/);
     }
   }
-  for (const file of ['index.html','harga/index.html']) {
+  for (const file of ['index.html','harga/index.html','cart.html','harga/cart.html']) {
     const html=await readFile(new URL('../'+file,import.meta.url),'utf8');
     assert.match(html,/<html lang="en">/);
     for (const match of html.matchAll(/data-i18n(?:-placeholder|-aria)?="([^"]+)"/g)) {

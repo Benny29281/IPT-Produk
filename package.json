@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.js",
-    "test": "node --test tests/order.test.js tests/language.test.js tests/export.test.js tests/delivery.test.js",
+    "test": "node --test tests/order.test.js tests/language.test.js tests/export.test.js tests/delivery.test.js tests/checkout.test.js",
     "check": "node --check config.js && node --check assets/js/app.js && node --check assets/js/order.js && node --check assets/js/i18n.js && node --check assets/js/catalog.js && node --check assets/js/countries.js && node --check assets/js/customer.js && node --check assets/js/order-document.js && node --check assets/js/order-export.js && node --check assets/js/delivery.js"
   }
 }

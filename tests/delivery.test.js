@@ -51,7 +51,7 @@ test('text and PDF snapshots preserve original prices without device delivery ch
   assert.equal(unknown.deviceDeliveryFee,undefined);
 });
 
-test('PDF renders TEREA delivery only and appends the existing payment image', () => {
+test('PDF renders TEREA delivery without the payment image', () => {
   const lines=[line(device,'unit',2),line(stick,'carton',7)];
   const snapshot=createOrderSnapshot(lines,{priced:true,deliveryFor});
   const texts=[],images=[];
@@ -64,7 +64,7 @@ test('PDF renders TEREA delivery only and appends the existing payment image', (
   assert.ok(texts.some(s => /^Rp\s*900,000$/.test(s)));
   assert.ok(texts.some(s => /^Rp\s*1,800,000$/.test(s)));
   assert.doesNotMatch(texts.join(' '),/\u00a5/);
-  assert.equal(pages.length,2);
-  assert.equal(layout.at(-1).closingImage,true);
-  assert.deepEqual(images,[closingImage]);
+  assert.equal(pages.length,1);
+  assert.equal(layout.some(page => page.closingImage),false);
+  assert.deepEqual(images,[]);
 });

@@ -94,10 +94,10 @@ test('PDF snapshots keep customer address, ordering location and product country
   assert.match(text,/Singapore/);
 });
 
-test('export customer validation requires name and address while phone and postal code are optional', () => {
-  const customer=normalizeCustomerDetails({name:' Alice ',address:' Street 1 ',city:' City ',country:' Country '});
+test('export customer validation requires contact details and every address field', () => {
+  const customer=normalizeCustomerDetails({name:' Alice ',phone:'+62 123456',address:' Street 1 ',city:' City ',region:' Province ',postalCode:'12345',country:' Country '});
   assert.ok(completeCustomerDetails(customer));
-  for(const key of ['name','address','city','country'])assert.equal(completeCustomerDetails({...customer,[key]:'  '}),false);
+  for(const key of ['name','phone','address','city','region','postalCode','country'])assert.equal(completeCustomerDetails({...customer,[key]:'  '}),false);
   assert.equal(completeCustomerDetails({...customer,address:'x'.repeat(601)}),false);
   assert.equal(completeOrderingLocation(null),false);
   assert.equal(completeOrderingLocation({country:'China',city:'Shenzhen'}),true);
