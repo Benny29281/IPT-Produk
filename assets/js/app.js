@@ -81,15 +81,18 @@ function hasCustomerInput() {
 $('#customer-form').addEventListener('submit', event => {
   event.preventDefault();
   if (!accepted || !lines().length || !$('#customer-form').reportValidity()) return;
-  if (!completeCustomerDetails(customerDetails())) { notify(t('customerDetailsMissing')); return; }
+  if (!completeCustomerDetails(customerDetails())) { notify(t(priced ? 'customerDetailsMissing' : 'unpricedDetailsMissing')); return; }
+  if (!priced) { $('#export-order').click(); return; }
   paymentSnapshot = createOrderSnapshot(lines(),{customer:customerDetails(),requireCustomerDetails:true,note:$('#note').value,priced,language,currency:config.currency,deliveryFor});
   setCheckoutStep('payment');
 });
 $('#checkout-next').addEventListener('click', () => { if (accepted && lines().length) setCheckoutStep('address'); });
 $('#checkout-back').addEventListener('click', () => setCheckoutStep(checkoutStep === 'payment' ? 'address' : 'cart'));
-$('#payment-qr').src = new URL('images/pdf-closing.png.jpeg',root).href;
-$('#payment-qr').addEventListener('error', () => $('#payment-image-error').hidden = false);
-$('#payment-qr').addEventListener('load', () => $('#payment-image-error').hidden = true);
+if (priced) {
+  $('#payment-qr').src = new URL('images/pdf-closing.png.jpeg',root).href;
+  $('#payment-qr').addEventListener('error', () => $('#payment-image-error').hidden = false);
+  $('#payment-qr').addEventListener('load', () => $('#payment-image-error').hidden = true);
+}
 function setCheckoutStep(step) {
   checkoutStep = step;
   if (step !== 'payment') paymentSnapshot = null;
@@ -99,22 +102,23 @@ function setCheckoutStep(step) {
   else $('#order-heading').focus({preventScroll:true});
 }
 function renderCheckout() {
-  const isCart = checkoutStep === 'cart', isAddress = checkoutStep === 'address', isPayment = checkoutStep === 'payment';
-  if (checkoutPage) {
+  const isCart = checkoutStep === 'cart', isAddress = checkoutStep === 'address', isPayment = priced && checkoutStep === 'payment';
+  const canExport = priced ? isPayment && Boolean(paymentSnapshot) : isAddress && lines().length > 0;
+  if (checkoutPage && priced) {
     $('#cart-stage-banner').hidden = isPayment;
     $('#payment-stage-banner').hidden = !isPayment;
   }
   $('#order-heading').textContent = t(isCart ? 'cartTitle' : isAddress ? 'shippingAddress' : 'paymentStep');
   $('#cart-review').hidden = !isCart;
   $('#customer-form').hidden = !isAddress;
-  $('#payment-panel').hidden = !isPayment;
+  if (priced) $('#payment-panel').hidden = !isPayment;
   $('#checkout-next').hidden = !isCart;
   $('#checkout-next').disabled = !lines().length || !accepted;
-  $('#continue-payment').hidden = !isAddress;
+  if (priced) $('#continue-payment').hidden = !isAddress;
   $('#checkout-back').hidden = isCart;
   $('#checkout-back').textContent = t(isPayment ? 'editAddress' : 'backToCart');
-  $('#export-order').hidden = !isPayment;
-  $('#export-order').disabled = !isPayment || !paymentSnapshot || exporting;
+  $('#export-order').hidden = !canExport;
+  $('#export-order').disabled = !canExport || exporting;
   document.querySelectorAll('[data-checkout-step]').forEach((item,index) => {
     const active = item.dataset.checkoutStep === checkoutStep;
     if (active) item.setAttribute('aria-current','step'); else item.removeAttribute('aria-current');
@@ -127,6 +131,7 @@ function renderCheckout() {
   }
 }
 $('#customer-form').addEventListener('input', () => {
+  if (!priced) paymentSnapshot = null;
   $('#reset').disabled = !lines().length && !hasCustomerInput();
   saveCart();
 });
@@ -350,11 +355,12 @@ $('#copy').addEventListener('click', async () => {
 $('#close-copy').addEventListener('click', () => $('#copy-dialog').close());
 
 $('#export-order').addEventListener('click', async () => {
-  if (!accepted || exporting || checkoutStep !== 'payment' || !paymentSnapshot) return;
-  if (!$('#customer-form').reportValidity() || !completeCustomerDetails(customerDetails())) { notify(t('customerDetailsMissing')); return; }
+  if (!accepted || exporting || !lines().length || (priced ? checkoutStep !== 'payment' || !paymentSnapshot : checkoutStep !== 'address')) return;
+  if (!$('#customer-form').reportValidity() || !completeCustomerDetails(customerDetails())) { notify(t(priced ? 'customerDetailsMissing' : 'unpricedDetailsMissing')); return; }
   exporting = true; renderOrder();
   $('#export-order').textContent = t('exportGenerating');
   try {
+    if (!priced && !paymentSnapshot) paymentSnapshot = createOrderSnapshot(lines(),{customer:customerDetails(),requireCustomerDetails:true,note:$('#note').value,priced:false,language});
     const snapshot = {...paymentSnapshot,language};
     const {renderOrderPages,buildImagePdf,jpegData} = await import('./order-export.js');
     const {pages} = renderOrderPages(snapshot);

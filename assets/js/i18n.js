@@ -1,5 +1,7 @@
 export const messages = {
   id: {
+    unpricedDetailsMissing:'Lengkapi nama, nomor kontak, dan seluruh kolom alamat sebelum mengunduh PDF.',
+    enterAddress:'Isi alamat pengiriman', unpricedOrderNote:'Lengkapi alamat pengiriman, lalu unduh daftar pesanan dalam PDF.',
     continueShopping:'Kembali belanja',
     cartTitle:'Keranjang', addressStep:'Alamat', paymentStep:'Pembayaran', checkoutProgress:'Tahapan checkout', checkout:'Checkout', continuePayment:'Lanjut pembayaran', backToCart:'Kembali ke keranjang', editAddress:'Ubah alamat', addToCart:'Masuk keranjang', addedToCart:'Produk ditambahkan ke keranjang.', viewCart:'Lihat keranjang', checkoutNote:'Periksa keranjang, isi alamat, lalu lanjut ke pembayaran.', paymentTo:'BAYAR KE', paymentHelp:'Pindai kode QRIS di bawah melalui aplikasi pembayaran Anda.', paymentNote:'Pembayaran dikonfirmasi oleh penjual. Unduh PDF detail pesanan sebagai referensi.', paymentImageError:'Gambar pembayaran gagal dimuat. Silakan muat ulang halaman.',
     orderingFrom:'Lokasi pemesanan', locationTitle:'Anda memesan dari mana?', locationHelp:'Isi negara dan kota Anda saat ini. Lokasi ini dicantumkan pada pesanan, terpisah dari versi negara produk.', locationCountry:'Negara/wilayah Anda', locationCity:'Kota Anda', countryPlaceholder:'Contoh: Indonesia', cityPlaceholder:'Contoh: Jakarta', locationContinue:'Lanjutkan', changeLocation:'Ubah',
@@ -32,6 +34,8 @@ export const messages = {
     newOrder:'PESANAN BARU', date:'Tanggal', total:'Total', unknownTotal:'perlu konfirmasi harga', unknownPrice:'Harga perlu dikonfirmasi', orderClosing:'Mohon konfirmasi ketersediaan dan pesanan ini.'
   },
   en: {
+    unpricedDetailsMissing:'Complete your name, contact number and every address field before downloading the PDF.',
+    enterAddress:'Enter shipping address', unpricedOrderNote:'Enter your shipping address, then download your order list as a PDF.',
     continueShopping:'Continue shopping',
     cartTitle:'Shopping cart', addressStep:'Address', paymentStep:'Payment', checkoutProgress:'Checkout steps', checkout:'Checkout', continuePayment:'Continue to payment', backToCart:'Back to cart', editAddress:'Edit address', addToCart:'Add to cart', addedToCart:'Product added to cart.', viewCart:'View cart', checkoutNote:'Review your cart, enter your address, then continue to payment.', paymentTo:'PAY TO', paymentHelp:'Scan the QRIS code below using your payment app.', paymentNote:'Payment is confirmed by the seller. Download your order details for reference.', paymentImageError:'The payment image could not load. Please reload this page.',
     orderingFrom:'Ordering from', locationTitle:'Where are you ordering from?', locationHelp:'Enter your current country and city. This location appears on your order, separately from the product country edition.', locationCountry:'Your country/region', locationCity:'Your city', countryPlaceholder:'e.g. Indonesia', cityPlaceholder:'e.g. Jakarta', locationContinue:'Continue', changeLocation:'Change',
@@ -64,6 +68,8 @@ export const messages = {
     newOrder:'NEW ORDER', date:'Date', total:'Total', unknownTotal:'price confirmation required', unknownPrice:'Price to be confirmed', orderClosing:'Please confirm availability and this order.'
   },
   zh: {
+    unpricedDetailsMissing:'请填写姓名、联系电话及所有收货地址字段，然后下载 PDF。',
+    enterAddress:'填写收货地址', unpricedOrderNote:'填写完整收货地址，然后下载 PDF 订单清单。',
     continueShopping:'继续购物',
     cartTitle:'购物车', addressStep:'地址', paymentStep:'付款', checkoutProgress:'结账步骤', checkout:'结账', continuePayment:'继续付款', backToCart:'返回购物车', editAddress:'修改地址', addToCart:'加入购物车', addedToCart:'商品已加入购物车。', viewCart:'查看购物车', checkoutNote:'确认购物车，填写收货地址，然后继续付款。', paymentTo:'收款方', paymentHelp:'请使用支付应用扫描下方 QRIS 二维码。', paymentNote:'付款由卖家确认。请下载订单明细作为参考。', paymentImageError:'无法加载付款图片，请刷新页面。',
     orderingFrom:'订购地点', locationTitle:'您从哪里订购？', locationHelp:'请输入您当前所在的国家或地区及城市。此地点将显示在订单上，与商品的国家版本分别标注。', locationCountry:'您所在的国家或地区', locationCity:'您所在的城市', countryPlaceholder:'例如：印度尼西亚', cityPlaceholder:'例如：雅加达', locationContinue:'继续', changeLocation:'更改',

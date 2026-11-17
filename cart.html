@@ -25,10 +25,8 @@
         <p class="catalog-footnote" data-i18n="footnote">TEREA: 20 sticks per pack, 10 packs (200 sticks) per carton. Devices are ordered individually.</p>
       </section>
       <aside id="order" class="order-panel" aria-label="Order summary" data-i18n-aria="orderAria">
-        <img id="cart-stage-banner" class="cart-banner cart-banner-wide" src="images/image.png" width="1902" height="1040" alt="" decoding="async">
-        <img id="payment-stage-banner" class="cart-banner" src="images/1.jpeg" width="410" height="410" alt="Thank you!" decoding="async" hidden>
         <div class="order-heading"><div><p class="eyebrow" data-i18n="yourSelection">YOUR SELECTION</p><h2 id="order-heading" tabindex="-1" data-i18n="cartTitle">Shopping cart</h2></div><span id="line-count" class="count">0</span></div>
-        <ol class="checkout-progress" aria-label="Checkout" data-i18n-aria="checkoutProgress"><li data-checkout-step="cart" aria-current="step"><b>1</b><span data-i18n="cartTitle">Cart</span></li><li data-checkout-step="address"><b>2</b><span data-i18n="addressStep">Address</span></li><li data-checkout-step="payment"><b>3</b><span data-i18n="paymentStep">Payment</span></li></ol>
+        <ol class="checkout-progress" aria-label="Checkout" data-i18n-aria="checkoutProgress"><li data-checkout-step="cart" aria-current="step"><b>1</b><span data-i18n="cartTitle">Cart</span></li><li data-checkout-step="address"><b>2</b><span data-i18n="addressStep">Address</span></li></ol>
         <div class="order-scroll"><div id="cart-review"><div id="order-lines"></div></div>
         <div id="order-total" class="order-total" hidden></div>
         <form id="customer-form" class="customer-fields" hidden>
@@ -41,15 +39,13 @@
           <label for="customer-postal"><span data-i18n="postalCode">Postal code</span> *</label><input id="customer-postal" maxlength="32" autocomplete="shipping postal-code" required>
           <label for="note"><span data-i18n="note">Order notes</span> <span data-i18n="optional">optional</span></label><textarea id="note" maxlength="500" rows="2" placeholder="Anything we should know?" data-i18n-placeholder="notePlaceholder"></textarea>
         </form>
-        <section id="payment-panel" class="payment-panel" hidden aria-labelledby="payment-title"><p class="payment-kicker" data-i18n="paymentTo">PAY TO</p><h3 id="payment-title">Indonesia Pacific Trade</h3><p id="payment-reference" class="payment-reference"></p><div id="payment-recipient" class="payment-recipient"></div><p data-i18n="paymentHelp">Scan the QRIS code below using your payment app.</p><img id="payment-qr" width="1135" height="1600" alt="QRIS Indonesia Pacific Trade" loading="lazy"><p id="payment-image-error" role="status" data-i18n="paymentImageError" hidden>The payment image could not load. Please reload this page.</p><p class="payment-note" data-i18n="paymentNote">Payment is confirmed by the seller. Download your order details for reference.</p></section>
         </div><div class="order-actions">
-        <button id="checkout-next" class="primary" data-i18n="checkout" disabled>Checkout</button>
-        <button id="continue-payment" class="primary" type="submit" form="customer-form" data-i18n="continuePayment" hidden>Continue to payment</button>
+        <button id="checkout-next" class="primary" data-i18n="enterAddress" disabled>Enter shipping address</button>
         <button id="checkout-back" class="checkout-back" data-i18n="backToCart" hidden>Back to cart</button>
         <button id="export-order" class="primary" hidden data-i18n="exportPdf" disabled>Download PDF</button>
         <button id="send" class="primary whatsapp-action" disabled hidden><span aria-hidden="true">&nearr;</span> <span data-i18n="send">Send via WhatsApp</span></button><p id="send-help" class="send-help" hidden></p>
-        <div class="secondary-actions"><button id="copy" data-i18n="copy" disabled>Copy order</button><button id="reset" data-i18n="reset" disabled>Clear order</button></div>
-        <p class="order-note"><span aria-hidden="true">&#8977;</span><span data-i18n="checkoutNote">Review your cart, enter your address, then continue to payment.</span></p></div>
+        <div class="secondary-actions"><button id="copy" hidden data-i18n="copy" disabled>Copy order</button><button id="reset" data-i18n="reset" disabled>Clear order</button></div>
+        <p class="order-note"><span aria-hidden="true">&#8977;</span><span data-i18n="unpricedOrderNote">Enter your shipping address, then download your order list as a PDF.</span></p></div>
       </aside>
     </div>
     <section class="health-note"><span class="adult-badge" data-age-label>21+</span><p><strong data-i18n="adults">For adults only.</strong> <span id="health-warning"></span></p></section>
