@@ -1,0 +1,792 @@
+{
+  "folder": "https://drive.google.com/drive/folders/1JBjxOPkJRO067l9MwmpwRK5GT8lkkPlc",
+  "notes": "Device photos from the original supplied Drive folder. All 21 TEREA product photos are customer-provided images from the second supplied Drive folder. Names, Chinese names, flavours and prices follow the customer tables.",
+  "products": [
+    {
+      "productId": "iqos-iluma-i-breeze-blue",
+      "folder": "https://drive.google.com/drive/folders/1YfFQYgZf9X9iH7L5Ul9R1ggsEaUH527m",
+      "photos": [
+        {
+          "name": "1. Thumbnail.png",
+          "source": "https://drive.google.com/file/d/1zXcRt-yqejmXbnufHDTg4kWXjxepofVm/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1FRLbXmLFubn3KaVOGcvdkagPiaYu7QEI/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1VPuMhjthLOs9R9X9ITYBK6ES9L4YB1YS/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1EyG6Su0EzQlE7_cPxTiQi9DFNsXLGor6/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1wJFJhO6zUmchFgAvNaQE0P1ZR4hGvKFa/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/14O-KZLgrM-Nm6zHHQlW4t6UMMa4UhLsk/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1WmYWDPxLT7BVGUHLbvtFdOKrMRXcFBnT/view",
+          "local": "images/products/iqos-iluma-i-breeze-blue-7.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-digital-violet",
+      "folder": "https://drive.google.com/drive/folders/1l39V-fUt-NMhXym4xSPIKBG5NWXijDur",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1shRFlBSjX4u8-0U9LMmR1HJXEYUpakQ2/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/17lmnEI_791xzrNmF2-9k5Dy2bHzUwveA/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1EKAsaReVeXIyO4I1ah8dYBMGfXb_A2Wz/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1tmZfIJRX5ir1WYqyz6WhLtI1SlqE316T/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/11tyCu4H5gLsjIx6r_iQkTuOl0btNx0UZ/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1dQAzeH0xXN5w1xS_Ky0ZCkGl8Dk8Pcoj/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1it0_hWntKJZ9RdspODEj4BpHDiTOUVho/view",
+          "local": "images/products/iqos-iluma-i-digital-violet-7.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-midnight-purple",
+      "folder": "https://drive.google.com/drive/folders/1m9GWn3wr00J1yNkjA8hQNWTEJkPzCvzJ",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1sCTKwWjcz7q9hLyNvFYQGWV3-whiZADc/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1ABODPvmMKUox9mQ8bL5efDnK4HLGl0yL/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1W0nTfyKFHeCXiM6Cx2Q0gcAwevchaGYL/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1ZGDOcSKtV0fK6AWKWk5Uufdc35J0zPsP/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1XrrcJs01AdnXc5UGTkyFSsUmUXKr57aE/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1pRkaWunmSmfIguk70bLcFAjXaJfTM4Jz/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1XdXuvTaj6pZzyX61xfGoceR3302-xUIz/view",
+          "local": "images/products/iqos-iluma-i-midnight-purple-7.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-leaf-green",
+      "folder": "https://drive.google.com/drive/folders/1Gi0jxHJ3vRfsl9t54qTQ41__bYyGkSdx",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1OKBLIKUz2j9mDRbulTL_I0unlK_8fput/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1H9ixyZYrMlY5WHudwyEfimV3OZt3SVKS/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1hTA5Hm_4r1gD3XeM0nI5k8lLScdhCbCC/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/18NRjP5n5HZ_wQkv05-8Eld-H5pEUlvkq/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1T_6GZqdEwQHsEJa1Q021SNFwk3GEChDS/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1pCjQ0HqaRXwnKWW4SBfkFc_LOM7v4f4G/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1J9FfCttxZMefXArOLXXpXzyEWQ21nmkM/view",
+          "local": "images/products/iqos-iluma-i-leaf-green-7.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-midnight-black",
+      "folder": "https://drive.google.com/drive/folders/1l7oA7iwM1R2MuL0aedIohDw6hci_1BPp",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1kR2bnPyFlzTfEs7VVU1Qi2mrH2IgAvpB/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1ddAFPap8uRpWgrY9fWGyt_2nxTEbLH_r/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1SCZIWWwGm-zgSz1iG-B8QrHu36PUnC8I/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1L3-BU8tf-BJ4wAyLHtCEyuwhLJVUBi_T/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1YpjY7QmYEgZf1BxX7WxHtvQ2I6YRZegI/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1QoA1WLhVJPBHrZ_9P0rVJHyt6k0B0G-m/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/18VSiz_U3wYpHbCh8fNPDs0XpfiPQjZnQ/view",
+          "local": "images/products/iqos-iluma-i-midnight-black-7.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-one-breeze-blue",
+      "folder": "https://drive.google.com/drive/folders/1uE63G-pcfegIF_xIzZOOJD4A3TMrZ9WP",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/18Ch_X9iCJ20nKKV3wsnGhNImk8Z8yDvU/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1kII3eZ9y7ubdxid43MDhYHHTveFoBlBV/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1PN5C5zfb4N1csKozBs-RXigTkGbgaVKw/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1YAUPjd8aUalR1GmaTtrUqj5mUxCL074L/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1k0zq3o2v2GhFPYIbqUk8a_mD0i0Wo5H6/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1Y5Yd-wpCgjObFbprtaaalcCBKdl9POf1/view",
+          "local": "images/products/iqos-iluma-i-one-breeze-blue-6.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-one-midnight-purple",
+      "folder": "https://drive.google.com/drive/folders/13J7QKn1SGdOuLFQoZ27rFzxXkO1WnwNX",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/16DvVI1knquxMrRwFRrlWWevoVDWApKfI/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1pSMqGBJIhWhZQ96yxxrgSt26GDtJvmUg/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1hziThbiVeLfRrwq2w9YbL1clsKh7ZKRy/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/12LmsXWGu0pyfTpN5qtrk33rsNuxSvZS8/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/12FstPRPNlZY8qYUmckXzcyT_MrtTCcXS/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1iuwNHAjnAxe1rCi8PceNOSRRU5aI2509/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-purple-6.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-one-leaf-green",
+      "folder": "https://drive.google.com/drive/folders/1gpG9kSNwP8IaOJfubiKT5l2GOed2JU54",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1i_v0XXdL2Tqf40QgxEAA3gD7xYHiMzxa/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1MEbG8eq7M7dU_mcgkp3DC_DjEcGEl8Ym/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1mK9r2eYvWqiqD2-_BUXsLjuupb-HQS-z/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1F5lO9uL0vZPtRaD4LbJQrM1XPtC48kMU/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1GCf1aqDTKhgiXcPr0qzxaX1JOFrFXlnP/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1OW8Qj4fyKe4mDaUOzlGMPrdyF1Cw_9rM/view",
+          "local": "images/products/iqos-iluma-i-one-leaf-green-6.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-one-midnight-black",
+      "folder": "https://drive.google.com/drive/folders/1jbe49flybRHsvUpVFZ9mgXH-pv-3thzR",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1L-EFdVsqwxiI1Gry2oEz5xBvHNT4dQc9/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1mS_Lhp2qRp8EteVLZs3gq8ako1kTnqE-/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1bKLAejl-ahcIaNzNt2kVQfO4K31uaTRh/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1BRh7N3IfbCdVq_O-baX4mRb_kfa8w02P/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1GcFcR01a72TdLz4mwfO_g2TRXoJyVV2B/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1gmdbUqMMu2oInYqEkPzi2zJXK4NqK6I6/view",
+          "local": "images/products/iqos-iluma-i-one-midnight-black-6.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-prime-breeze-blue",
+      "folder": "https://drive.google.com/drive/folders/1cNr_Y-kTJkgSVeA2juo6NasDn7PDifiq",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1zb-rSr3ZILwolNPGXXqbwA6JjlzIUw7m/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1hBfzD0TPIUbDaFAmR8x5qVF3uFSmoPKJ/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/1M6E4napyj5-qp-0mPL3tZ_L0OXEuKN2f/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1dEyEVgCGrk2Ej4Hbsdt7g2sheEQFmeng/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/18EwsIkm-z9tNFX4G1_ekfRvRCSHdki8k/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1B5VNOxqWtLaI9Yg5uKvYtBJQo_CyYgp8/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1aOsKDALrJhh8YleqsbOS45WGm_jsukg0/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-7.webp"
+        },
+        {
+          "name": "8.png",
+          "source": "https://drive.google.com/file/d/1fxZE6v8-kBHWHdCgg7woFeHTu7kzqi7x/view",
+          "local": "images/products/iqos-iluma-i-prime-breeze-blue-8.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-prime-midnight-purple",
+      "folder": "https://drive.google.com/drive/folders/1OxfRsa8U-SSfQgxA1WAq66PyVP_fNjNn",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1MnY6f6r1cY4_tIRG4wYaifCGKmAIaxDR/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1UWWApvJ3KaWlU6uUc2hO4CYUU2G4D9G3/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/11W7aLW4HdIuKwAlNreXhP0GOwMSn9n0H/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1zJ_Z3n5fTLCySJQSzr0AXe67I7Y8j3cy/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1iJY9-ZdHEkbJFZmlJmtMvk5RP7i94APs/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1fbKMAit9CE1A2mc7hs3FMKxPMSWl5Kz0/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1K9JArgSHzWyUCaz_1vq9jWiyXnXZRs11/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-7.webp"
+        },
+        {
+          "name": "8.png",
+          "source": "https://drive.google.com/file/d/1_VgPttu_oiHx5A__uxtBJRLlL372E8k_/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-purple-8.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-prime-garnet-red",
+      "folder": "https://drive.google.com/drive/folders/1CFkaXY5n0ltS4KyxYx6SRHY6dhsnDNhQ",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1ZBvjTK9wiUYyxxXsXRnMhwgrUYl3j79O/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1eJ4BdZtJsSolKmbGzjjTaeDmUl9HwXEe/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/15Y6bx5W_7B40M3MWalw_Zimg9IgDQ-3v/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1CGI_9tWMaITX94NlQn65YpVJEviv3ZUt/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1gBheDb4Wg0ZrQlINWRuKXIpkFlSDE18q/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1WiLPurTsQo3jyuWDOhzrlTT0yrGWy8Sg/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1Ut9DcDtG2caIvpK9pPzqFBjpfVu4YmMx/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-7.webp"
+        },
+        {
+          "name": "8.png",
+          "source": "https://drive.google.com/file/d/12Ty7jrdrHcnIm5qSZtCmKLn5SYprxizl/view",
+          "local": "images/products/iqos-iluma-i-prime-garnet-red-8.webp"
+        }
+      ]
+    },
+    {
+      "productId": "iqos-iluma-i-prime-midnight-black",
+      "folder": "https://drive.google.com/drive/folders/1FN-62HEntYm5IClTjle-2ZZ-L05P_V38",
+      "photos": [
+        {
+          "name": "1.png",
+          "source": "https://drive.google.com/file/d/1OsC2w05_1_wFdZjTHa4nVejDR6Re6eFD/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-1.webp"
+        },
+        {
+          "name": "2.png",
+          "source": "https://drive.google.com/file/d/1xL495Tmu-Opuf_V1u8qx2ciGa6ViUL9J/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-2.webp"
+        },
+        {
+          "name": "3.png",
+          "source": "https://drive.google.com/file/d/16XiP_JVihwrrS2UD6IUHIYV61Rb6wyGS/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-3.webp"
+        },
+        {
+          "name": "4.png",
+          "source": "https://drive.google.com/file/d/1uaSprWmyjxwGQPUbO7a1YybHXg0dSEim/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-4.webp"
+        },
+        {
+          "name": "5.png",
+          "source": "https://drive.google.com/file/d/1kqTpqPlMCwuxkvHl_d-a0L1ZuebPQFwB/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-5.webp"
+        },
+        {
+          "name": "6.png",
+          "source": "https://drive.google.com/file/d/1Y4pSxnJvrJFrvhWDGxbOe-gGE2edBUVy/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-6.webp"
+        },
+        {
+          "name": "7.png",
+          "source": "https://drive.google.com/file/d/1T9rfn3IHalUSAyGX8vY5TOUuwyf7xfBm/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-7.webp"
+        },
+        {
+          "name": "8.png",
+          "source": "https://drive.google.com/file/d/1MVe9_o3miJGYupnu17CSsZ1ynzYqqt6d/view",
+          "local": "images/products/iqos-iluma-i-prime-midnight-black-8.webp"
+        }
+      ]
+    },
+    {
+      "productId": "terea-auburn-edition-indonesia",
+      "reference": "https://drive.google.com/file/d/1mWdy_WfrpLy254ksiLxdVMuX_6Yrj6Rc/view",
+      "photos": [
+        {
+          "name": "auburn edition.jpg",
+          "source": "https://drive.google.com/file/d/1mWdy_WfrpLy254ksiLxdVMuX_6Yrj6Rc/view",
+          "local": "images/products/terea-auburn-edition-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-bermin-pearl-edition-indonesia",
+      "reference": "https://drive.google.com/file/d/1cG1KcKx9PqShoD47EPR5ou8cGvu6_ZzI/view",
+      "photos": [
+        {
+          "name": "Bermin Pearl.jpg",
+          "source": "https://drive.google.com/file/d/1cG1KcKx9PqShoD47EPR5ou8cGvu6_ZzI/view",
+          "local": "images/products/terea-bermin-pearl-edition-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-berrine-edition-indonesia",
+      "reference": "https://drive.google.com/file/d/1hyrxrSKb9OSOs6OqvE5UKiJTtpEjwQVD/view",
+      "photos": [
+        {
+          "name": "Berrine Edition.jpg",
+          "source": "https://drive.google.com/file/d/1hyrxrSKb9OSOs6OqvE5UKiJTtpEjwQVD/view",
+          "local": "images/products/terea-berrine-edition-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-black-green-indonesia",
+      "reference": "https://drive.google.com/file/d/14qqBUPTXZgsW_b__453Ve8Qi_AAsaKnq/view",
+      "photos": [
+        {
+          "name": "Black green.jpg",
+          "source": "https://drive.google.com/file/d/14qqBUPTXZgsW_b__453Ve8Qi_AAsaKnq/view",
+          "local": "images/products/terea-black-green-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-black-ruby-indonesia",
+      "reference": "https://drive.google.com/file/d/15xdk4qLDJOmx3U-zl1-9aTXgk-TwTyVn/view",
+      "photos": [
+        {
+          "name": "Black Ruby.jpg",
+          "source": "https://drive.google.com/file/d/15xdk4qLDJOmx3U-zl1-9aTXgk-TwTyVn/view",
+          "local": "images/products/terea-black-ruby-indonesia-own-v2.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-blue-indonesia",
+      "reference": "https://drive.google.com/file/d/1i0fXHCb6Oq97RA_8waAWWguJl-sF8a7w/view",
+      "photos": [
+        {
+          "name": "Blue.jpg",
+          "source": "https://drive.google.com/file/d/1i0fXHCb6Oq97RA_8waAWWguJl-sF8a7w/view",
+          "local": "images/products/terea-blue-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-bright-wave-indonesian",
+      "reference": "https://drive.google.com/file/d/1-NImoq6YDm5nFKV5BuwYd_trBaAxUKeb/view",
+      "photos": [
+        {
+          "name": "Bright Wave.jpg",
+          "source": "https://drive.google.com/file/d/1-NImoq6YDm5nFKV5BuwYd_trBaAxUKeb/view",
+          "local": "images/products/terea-bright-wave-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-bronze-indonesian",
+      "reference": "https://drive.google.com/file/d/1a5d5Siu8-5mNZ9cmklmyZZke0kbO56kB/view",
+      "photos": [
+        {
+          "name": "Bronze pack.jpg",
+          "source": "https://drive.google.com/file/d/1a5d5Siu8-5mNZ9cmklmyZZke0kbO56kB/view",
+          "local": "images/products/terea-bronze-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-dimensions-apricity",
+      "reference": "https://drive.google.com/file/d/1XuIRqWyL-ZjDUhD4ggV0T4PW8mv6Lk5P/view",
+      "photos": [
+        {
+          "name": "Dimensions Apricity.jpg",
+          "source": "https://drive.google.com/file/d/1XuIRqWyL-ZjDUhD4ggV0T4PW8mv6Lk5P/view",
+          "local": "images/products/terea-dimensions-apricity-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-golden-edition",
+      "reference": "https://drive.google.com/file/d/1JZYYz5EEEfWXnwJzoFfaSgE628JUQCwJ/view",
+      "photos": [
+        {
+          "name": "Golden Edition.jpg",
+          "source": "https://drive.google.com/file/d/1JZYYz5EEEfWXnwJzoFfaSgE628JUQCwJ/view",
+          "local": "images/products/terea-golden-edition-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-green-indonesian",
+      "reference": "https://drive.google.com/file/d/1laQWyqUctD1cn7EACvTWRBJ4moEidi15/view",
+      "photos": [
+        {
+          "name": "Green.jpg",
+          "source": "https://drive.google.com/file/d/1laQWyqUctD1cn7EACvTWRBJ4moEidi15/view",
+          "local": "images/products/terea-green-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-mulint-edition-indonesia",
+      "reference": "https://drive.google.com/file/d/1Ua4uBm_2HDWRP-sc7pDRF596foNSIxa-/view",
+      "photos": [
+        {
+          "name": "Mulint Edition.jpg",
+          "source": "https://drive.google.com/file/d/1Ua4uBm_2HDWRP-sc7pDRF596foNSIxa-/view",
+          "local": "images/products/terea-mulint-edition-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-oasis-pearl-indonesian",
+      "reference": "https://drive.google.com/file/d/1gVBPojx0FBjrk5IzVwAAvYn5Xwjqmh3d/view",
+      "photos": [
+        {
+          "name": "Oasis Pearl.jpg",
+          "source": "https://drive.google.com/file/d/1gVBPojx0FBjrk5IzVwAAvYn5Xwjqmh3d/view",
+          "local": "images/products/terea-oasis-pearl-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-passion-fruit",
+      "reference": "https://drive.google.com/file/d/1fduQt5aadP14Yp_GwP0t__yQPgGpsGFt/view",
+      "photos": [
+        {
+          "name": "Passion Fruit.jpg",
+          "source": "https://drive.google.com/file/d/1fduQt5aadP14Yp_GwP0t__yQPgGpsGFt/view",
+          "local": "images/products/terea-passion-fruit-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-perint-pearl-edition-indonesia",
+      "reference": "https://drive.google.com/file/d/1fkb91D5O8mucyu2aq_upkNErngCdzRU_/view",
+      "photos": [
+        {
+          "name": "Pearl Perint.jpg",
+          "source": "https://drive.google.com/file/d/1fkb91D5O8mucyu2aq_upkNErngCdzRU_/view",
+          "local": "images/products/terea-perint-pearl-edition-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-purple-wave-indonesian",
+      "reference": "https://drive.google.com/file/d/1BMzoMd0Y02GtJ4_Rln8ZiUhCTtFAgCyC/view",
+      "photos": [
+        {
+          "name": "Purple Wave.jpg",
+          "source": "https://drive.google.com/file/d/1BMzoMd0Y02GtJ4_Rln8ZiUhCTtFAgCyC/view",
+          "local": "images/products/terea-purple-wave-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-riviera-pearl-indonesia",
+      "reference": "https://drive.google.com/file/d/1O9OgBjTgF3SsoVm0UruzS0rQ4AHM9COO/view",
+      "photos": [
+        {
+          "name": "Riviera Pearl.jpg",
+          "source": "https://drive.google.com/file/d/1O9OgBjTgF3SsoVm0UruzS0rQ4AHM9COO/view",
+          "local": "images/products/terea-riviera-pearl-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "sienna-indonesian",
+      "reference": "https://drive.google.com/file/d/1eGZQc5PZFsCR1zb0NUNqeIgjxOmeVzfw/view",
+      "photos": [
+        {
+          "name": "sienna.jpg",
+          "source": "https://drive.google.com/file/d/1eGZQc5PZFsCR1zb0NUNqeIgjxOmeVzfw/view",
+          "local": "images/products/sienna-indonesian-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-strawberry-pearl",
+      "reference": "https://drive.google.com/file/d/1xsudMz0DgSwmkjTju53u_uhDYcuMkR1N/view",
+      "photos": [
+        {
+          "name": "Strawberry Pearl.jpg",
+          "source": "https://drive.google.com/file/d/1xsudMz0DgSwmkjTju53u_uhDYcuMkR1N/view",
+          "local": "images/products/terea-strawberry-pearl-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-sun-pearl-indonesia",
+      "reference": "https://drive.google.com/file/d/10gnigozyy-1AfV2Z7CVIfO31oulnuSZH/view",
+      "photos": [
+        {
+          "name": "Sun Pearl.jpg",
+          "source": "https://drive.google.com/file/d/10gnigozyy-1AfV2Z7CVIfO31oulnuSZH/view",
+          "local": "images/products/terea-sun-pearl-indonesia-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    },
+    {
+      "productId": "terea-dimension-yugen",
+      "reference": "https://drive.google.com/file/d/1wP2EDWXdW2CLIK63eP7-vaQQp30GLKkT/view",
+      "photos": [
+        {
+          "name": "Dimension yugen.jpg",
+          "source": "https://drive.google.com/file/d/1wP2EDWXdW2CLIK63eP7-vaQQp30GLKkT/view",
+          "local": "images/products/terea-dimension-yugen-own.webp"
+        }
+      ],
+      "folder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+    }
+  ],
+  "tereaPhotoFolder": "https://drive.google.com/drive/folders/13qivqSLdSbocYmgUxaIfZXKUJQZoIWhL"
+}

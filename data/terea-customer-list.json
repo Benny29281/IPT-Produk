@@ -1,0 +1,23 @@
+[
+  {"id":"terea-auburn-edition-indonesia","name":"Auburn Edition","nameZh":"赤棕","flavor":"Vanilla, Appricot, Clove","pack":35000,"carton":350000},
+  {"id":"terea-bermin-pearl-edition-indonesia","name":"Bermin Pearl Edition","nameZh":"森林莓果爆珠","flavor":"Blueberry, Capsul, Mentol","pack":39000,"carton":390000},
+  {"id":"terea-berrine-edition-indonesia","name":"Berrine Edition","nameZh":"紫丁香","flavor":"Cooling & Floral","pack":39000,"carton":390000},
+  {"id":"terea-black-green-indonesia","name":"Black Green","nameZh":"黑冰薄荷","flavor":"Green Fruit Aroma","pack":39000,"carton":390000},
+  {"id":"terea-black-ruby-indonesia","name":"Black Ruby","nameZh":"黑红宝石","flavor":"Red Berry","pack":39000,"carton":390000},
+  {"id":"terea-blue-indonesia","name":"Blue","nameZh":"蓝色","flavor":"Peppermint, Creamy","pack":39000,"carton":390000},
+  {"id":"terea-bright-wave-indonesian","name":"Bright Wave","nameZh":"亮波","flavor":"Pear, Menthol","pack":39000,"carton":390000},
+  {"id":"terea-bronze-indonesian","name":"Bronze","nameZh":"古铜","flavor":"Cocoa, Dry Fruit","pack":39000,"carton":390000},
+  {"id":"terea-dimensions-apricity","name":"Dimension Apricity","nameZh":"暖阳","flavor":"Caramel with appricot","pack":39000,"carton":390000},
+  {"id":"terea-golden-edition","name":"Golden Edition","nameZh":"金色","flavor":"Plum, Clove","pack":35000,"carton":350000},
+  {"id":"terea-green-indonesian","name":"Green","nameZh":"淡薄荷","flavor":"Pear, Menthol","pack":39000,"carton":390000},
+  {"id":"terea-mulint-edition-indonesia","name":"Mulint Edition","nameZh":"绿丁香","flavor":"Cooling & Fruity","pack":35000,"carton":350000},
+  {"id":"terea-oasis-pearl-indonesian","name":"Oasis Pearl","nameZh":"经典爆珠","flavor":"Tropic Fruity, Menthol, Pearl","pack":40000,"carton":400000},
+  {"id":"terea-passion-fruit","name":"Passion Fruit","nameZh":"百香果爆珠","flavor":"Passion Fruit, Capsule, Menthol, Clove","pack":37000,"carton":370000},
+  {"id":"terea-perint-pearl-edition-indonesia","name":"Perint Pearl Edition","nameZh":"花园水果爆珠","flavor":"Pear, Cengkeh, Capsule","pack":39000,"carton":390000},
+  {"id":"terea-purple-wave-indonesian","name":"Purple Wave/ Mauve","nameZh":"紫波","flavor":"Blueberry","pack":39000,"carton":390000},
+  {"id":"terea-riviera-pearl-indonesia","name":"Riviera Pearl","nameZh":"覆盆子爆珠","flavor":"Raspberry, Floral, capsule","pack":40000,"carton":400000},
+  {"id":"sienna-indonesian","name":"Sienna","nameZh":"赭石","flavor":"Tea aroma, woody","pack":39000,"carton":390000},
+  {"id":"terea-strawberry-pearl","name":"Strawberry Pearl","nameZh":"草莓爆珠","flavor":"Strawberry, Basil, Capsule, Clove, Menthol","pack":37000,"carton":370000},
+  {"id":"terea-sun-pearl-indonesia","name":"Sun Pearl","nameZh":"西瓜爆珠","flavor":"Exoctic Fruit & Menthol","pack":40000,"carton":400000},
+  {"id":"terea-dimension-yugen","name":"Dimension Yugen","nameZh":"幽玄","flavor":"Fruity & Floral","pack":39000,"carton":390000}
+]

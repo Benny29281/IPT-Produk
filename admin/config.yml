@@ -1,0 +1,62 @@
+# Ganti repo dan branch sesuai repository GitHub Anda.
+backend:
+  name: github
+  repo: Benny29281/IPT-Produk
+  branch: main
+  # base_url: https://URL-WORKER-ANDA.workers.dev   # hanya jika admin non-teknis (OAuth)
+site_url: https://Benny29281.github.io/IPT-Produk/
+media_folder: images/products
+public_folder: images/products
+locale: id
+collections:
+  - name: products
+    label: Produk
+    files:
+      - name: products
+        label: Daftar produk
+        file: data/products.json
+        format: json
+        fields:
+          - label: Produk
+            name: products
+            widget: list
+            label_singular: produk
+            summary: "{{fields.name}} - {{fields.variant}}"
+            fields:
+              - {label: ID unik (huruf kecil, tanpa spasi), name: id, widget: string}
+              - {label: Kategori, name: category, widget: select, options: [{label: Sticks, value: sticks}, {label: Perangkat, value: device}]}
+              - {label: Nama, name: name, widget: string}
+              - {label: Nama Mandarin, name: nameZh, widget: string, required: false}
+              - {label: Varian / warna, name: variant, widget: string}
+              - {label: Kode warna, name: color, widget: color, required: false}
+              - {label: Brand, name: brand, widget: string, required: false}
+              - {label: Rasa, name: flavor, widget: string, required: false}
+              - {label: Kode negara (ID/KR/JP), name: country, widget: string, required: false}
+              - {label: Foto utama, name: image, widget: image}
+              - {label: Foto tambahan, name: images, widget: list, field: {label: Foto, name: foto, widget: image}, required: false}
+              - {label: Satuan, name: units, widget: select, multiple: true, options: [{label: Pack (20 batang), value: pack}, {label: Carton (10 pack), value: carton}, {label: Unit, value: unit}]}
+              - {label: Deskripsi, name: description, widget: text, required: false}
+  - name: pricing
+    label: Harga dan ongkir
+    files:
+      - name: prices
+        label: Harga produk
+        file: data/prices.json
+        format: json
+        fields:
+          - label: Harga
+            name: prices
+            widget: list
+            summary: "{{fields.id}}"
+            fields:
+              - {label: ID produk (sama dengan ID di daftar produk), name: id, widget: string}
+              - {label: Harga per pack, name: pack, widget: number, value_type: int, min: 0, required: false}
+              - {label: Harga per carton, name: carton, widget: number, value_type: int, min: 0, required: false}
+              - {label: Harga per unit (perangkat), name: unit, widget: number, value_type: int, min: 0, required: false}
+      - name: settings
+        label: Ongkir
+        file: data/settings.json
+        format: json
+        fields:
+          - {label: Ongkir (Rp), name: deliveryFee, widget: number, value_type: int, min: 0}
+          - {label: Gratis ongkir jika belanja minimal (Rp, 0 = nonaktif), name: freeShippingMin, widget: number, value_type: int, min: 0}
