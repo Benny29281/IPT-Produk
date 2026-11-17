@@ -399,7 +399,14 @@ async function load() {
       return response.json();
     };
     const [pd, prd, sd] = await Promise.all([get('data/products.json'), priced ? get('data/prices.json') : Promise.resolve({}), priced ? get('data/settings.json').catch(() => ({})) : Promise.resolve({})]);
-    products = pd.products ?? pd; prices = Array.isArray(prd.prices) ? Object.fromEntries(prd.prices.map(({id,...rest}) => [id,Object.fromEntries(Object.entries(rest).filter(([,v]) => typeof v === 'number'))])) : prd;
+    const rel = v => typeof v === 'string' ? v.trim().replace(/^(\.?\/)+/,'') : v;
+products = (pd.products ?? pd).map(x => ({
+  ...x,
+  image: rel(x.image),
+  images: Array.isArray(x.images)
+    ? x.images.map(i => rel(typeof i === 'object' && i ? i.foto : i)).filter(Boolean)
+    : x.images
+})); prices = Array.isArray(prd.prices) ? Object.fromEntries(prd.prices.map(({id,...rest}) => [id,Object.fromEntries(Object.entries(rest).filter(([,v]) => typeof v === 'number'))])) : prd;
     settings = deliverySettings(sd);
     if (!Array.isArray(products) || !products.every(p => p.id && p.name && Array.isArray(p.units) && p.units.every(unit => unit in labels))) throw new Error('Invalid product data');
     catalogState = 'ready';
