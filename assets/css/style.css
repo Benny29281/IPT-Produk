@@ -131,6 +131,7 @@ html[lang="zh-Hans"] .product-description>p{line-height:2}
 .payment-note{color:var(--muted)}
 #payment-image-error{color:#a33b28}
 /* Separate catalog and cart pages */
+.cart-banner{display:block;width:100%;height:auto;flex-shrink:0;border-radius:10px;margin-bottom:24px}
 body[data-page] .workspace{grid-template-columns:minmax(0,1fr)}
 body[data-page="catalog"] .product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 body[data-page="checkout"] .workspace{max-width:760px;margin-left:auto;margin-right:auto;gap:20px}
