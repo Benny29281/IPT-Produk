@@ -147,7 +147,7 @@ body[data-page="checkout"] .order-line small{font-size:12px}
 body[data-page="checkout"] .customer-fields{display:grid;grid-template-columns:1fr}
 body[data-page="checkout"] .customer-fields label{font-size:12px}
 body[data-page="checkout"] .customer-fields input,body[data-page="checkout"] .customer-fields textarea{font-size:14px}
-body[data-page="checkout"] #payment-qr{max-width:420px;margin:20px auto}
+body[data-page="checkout"] :is(#payment-qr,#payment-stage-banner){width:100%;max-width:420px;height:auto;margin:20px auto}
 .header-cart{display:flex;align-items:center;gap:8px;min-height:44px;font-size:12px;font-weight:600;color:var(--green)}
 .header-cart svg{width:22px;height:22px}
 .header-cart b{display:grid;place-items:center;min-width:24px;height:24px;padding:0 5px;background:var(--green);color:#fff;border-radius:20px;font-size:11px}
