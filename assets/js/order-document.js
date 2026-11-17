@@ -2,6 +2,25 @@ import {normalizeDelivery} from './delivery.js';
 import {displayName} from './order.js';
 import {normalizeCustomerDetails,normalizeOrderingLocation,completeCustomerDetails} from './customer.js';
 
+const pdfSequences = new Map();
+
+export function nextPdfFilename(date = new Date(), storage) {
+  if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new Error('Invalid PDF date');
+  const day = `${date.getFullYear()}${String(date.getMonth()+1).padStart(2,'0')}${String(date.getDate()).padStart(2,'0')}`;
+  const key = `tobapia-pdf-sequence-${day}`;
+  let previous = pdfSequences.get(day) || 0;
+  try {
+    storage ??= globalThis.localStorage;
+    const saved = Number(storage?.getItem(key));
+    if (Number.isSafeInteger(saved) && saved >= 0) previous = Math.max(previous,saved);
+  } catch {}
+  const next = previous + 1;
+  if (next > 999999) throw new Error('Daily PDF sequence limit reached');
+  pdfSequences.set(day,next);
+  try { storage?.setItem(key,String(next)); } catch {}
+  return `${day}_${String(next).padStart(6,'0')}.pdf`;
+}
+
 export function createOrderSnapshot(lines, {
   name = '', note = '', priced = false, language = 'en', currency = 'IDR',
   date = new Date(), id, customer, orderingFrom, requireCustomerDetails = false, deliveryFor

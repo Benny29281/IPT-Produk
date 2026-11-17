@@ -1,5 +1,5 @@
 window.STORE_CONFIG = Object.freeze({
-  name: 'FORM & CO.',
+  name: 'TOBAPIA',
   tagline: 'Product catalog / Katalog produk / 商品目录',
   whatsapp: '8618804519859', // Nomor WhatsApp pemesanan dalam format internasional tanpa tanda +.
   whatsappEnabled: false, // Pengiriman WhatsApp dimatikan; pelanggan mengunduh PDF pesanan.

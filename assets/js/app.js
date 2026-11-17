@@ -2,7 +2,7 @@ import {calculateDelivery,deliverySettings} from './delivery.js';
 import { normalizeQuantity, orderLines, formatOrder, displayName, changeProductUnit } from './order.js';
 import { translate } from './i18n.js';
 import {filterCatalog,countryName,editionCountries} from './catalog.js';
-import {createOrderSnapshot} from './order-document.js';
+import {createOrderSnapshot,nextPdfFilename} from './order-document.js';
 import {normalizeCustomerDetails,completeCustomerDetails} from './customer.js';
 
 const config = window.STORE_CONFIG;
@@ -27,6 +27,7 @@ let galleryProduct = null, galleryIndex = 0;
 let catalogState = 'idle';
 let country = 'all', exporting = false;
 let exportUrls = [];
+const pdfFilenames = new Map();
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const lines = () => orderLines(products, quantities, prices);
 
@@ -99,6 +100,10 @@ function setCheckoutStep(step) {
 }
 function renderCheckout() {
   const isCart = checkoutStep === 'cart', isAddress = checkoutStep === 'address', isPayment = checkoutStep === 'payment';
+  if (checkoutPage) {
+    $('#cart-stage-banner').hidden = isPayment;
+    $('#payment-stage-banner').hidden = !isPayment;
+  }
   $('#order-heading').textContent = t(isCart ? 'cartTitle' : isAddress ? 'shippingAddress' : 'paymentStep');
   $('#cart-review').hidden = !isCart;
   $('#customer-form').hidden = !isAddress;
@@ -357,7 +362,8 @@ $('#export-order').addEventListener('click', async () => {
     exportUrls.forEach(url => URL.revokeObjectURL(url)); exportUrls = [];
     const pdfUrl = URL.createObjectURL(new Blob([pdf],{type:'application/pdf'})); exportUrls.push(pdfUrl);
     const link = document.createElement('a');
-    link.href = pdfUrl; link.download = `${snapshot.id}.pdf`; link.hidden = true;
+    if (!pdfFilenames.has(snapshot.id)) pdfFilenames.set(snapshot.id,nextPdfFilename(new Date(snapshot.createdAt)));
+    link.href = pdfUrl; link.download = pdfFilenames.get(snapshot.id); link.hidden = true;
     document.body.append(link); link.click(); link.remove();
     notify(t('exportReady',{count:pages.length}));
   } catch (error) {

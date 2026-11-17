@@ -131,7 +131,11 @@ html[lang="zh-Hans"] .product-description>p{line-height:2}
 .payment-note{color:var(--muted)}
 #payment-image-error{color:#a33b28}
 /* Separate catalog and cart pages */
-.cart-banner{display:block;width:100%;height:auto;flex-shrink:0;border-radius:10px;margin-bottom:24px}
+.cart-banner{display:block;width:100%;max-width:360px;height:auto;flex-shrink:0;border-radius:10px;margin:0 auto 24px}
+.cart-banner-wide{max-width:none}
+.brand-logo{display:block;width:160px;height:72px;object-fit:cover;object-position:center;border-radius:8px;flex-shrink:0}
+.age-tools .brand-logo{width:140px;height:64px}
+@media(max-width:460px){.header .brand-logo{width:120px;height:56px}}
 body[data-page] .workspace{grid-template-columns:minmax(0,1fr)}
 body[data-page="catalog"] .product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 body[data-page="checkout"] .workspace{max-width:760px;margin-left:auto;margin-right:auto;gap:20px}
