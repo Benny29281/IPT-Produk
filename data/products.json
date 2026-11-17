@@ -3459,15 +3459,15 @@
       "brand": "",
       "flavor": "",
       "country": "ID",
-      "image": "/images/products/1.png",
+      "image": "/images/products/iqos-iluma-i-prime-aspen-green-1.webp",
       "images": [
-        "/images/products/2.png",
-        "/images/products/3.png",
-        "/images/products/4.png",
-        "/images/products/5.png",
-        "/images/products/6.png",
-        "/images/products/7.png",
-        "/images/products/8.png"
+        "/images/products/iqos-iluma-i-prime-aspen-green-2.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-3.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-4.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-5.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-6.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-7.webp",
+        "/images/products/iqos-iluma-i-prime-aspen-green-8.webp"
       ],
       "units": [
         "unit"
