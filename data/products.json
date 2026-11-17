@@ -3461,7 +3461,13 @@
       "country": "",
       "image": "/images/products/1.png",
       "images": [
-        "/images/products/2.png"
+        "/images/products/2.png",
+        "/images/products/3.png",
+        "/images/products/4.png",
+        "/images/products/5.png",
+        "/images/products/7.png",
+        "/images/products/8.png",
+        "/images/products/6.png"
       ],
       "units": [
         "unit"
