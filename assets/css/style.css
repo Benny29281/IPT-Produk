@@ -127,6 +127,7 @@ html[lang="zh-Hans"] .product-description>p{line-height:2}
 .payment-reference{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
 .payment-recipient{font-size:12px;line-height:1.8;white-space:pre-line;background:#f5f7f1;border-radius:8px;padding:14px;margin:16px 0}
 .payment-panel>p:not(.payment-kicker){font-size:12px;line-height:1.8}
+.payment-panel>p[data-i18n="paymentHelp"]{font-size:1.25rem;font-weight:700;line-height:1.5}
 #payment-qr{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
 .payment-note{color:var(--muted)}
 #payment-image-error{color:#a33b28}

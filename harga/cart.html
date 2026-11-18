@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -41,7 +41,7 @@
           <label for="customer-postal"><span data-i18n="postalCode">Postal code</span> *</label><input id="customer-postal" maxlength="32" autocomplete="shipping postal-code" required>
           <label for="note"><span data-i18n="note">Order notes</span> <span data-i18n="optional">optional</span></label><textarea id="note" maxlength="500" rows="2" placeholder="Anything we should know?" data-i18n-placeholder="notePlaceholder"></textarea>
         </form>
-        <section id="payment-panel" class="payment-panel" hidden aria-labelledby="payment-title"><p class="payment-kicker" data-i18n="paymentTo">PAY TO</p><h3 id="payment-title">Indonesia Pacific Trade</h3><p id="payment-reference" class="payment-reference"></p><div id="payment-recipient" class="payment-recipient"></div><p data-i18n="paymentHelp">Scan the QRIS code below using your payment app.</p><img id="payment-qr" width="1135" height="1600" alt="QRIS Indonesia Pacific Trade" loading="lazy"><p id="payment-image-error" role="status" data-i18n="paymentImageError" hidden>The payment image could not load. Please reload this page.</p><p class="payment-note" data-i18n="paymentNote">Payment is confirmed by the seller. Download your order details for reference.</p></section>
+        <section id="payment-panel" class="payment-panel" hidden aria-labelledby="payment-title"><p class="payment-kicker" data-i18n="paymentTo">PAY TO</p><h3 id="payment-title">Indonesia Pacific Trade</h3><p id="payment-reference" class="payment-reference"></p><div id="payment-recipient" class="payment-recipient"></div><p data-i18n="paymentHelp">Please scan the QR code below and enter the corresponding amount to complete the payment</p><img id="payment-qr" width="1135" height="1600" alt="QRIS Indonesia Pacific Trade" loading="lazy"><p id="payment-image-error" role="status" data-i18n="paymentImageError" hidden>The payment image could not load. Please reload this page.</p><p class="payment-note" data-i18n="paymentNote">Payment is confirmed by the seller. Download your order details for reference.</p></section>
         </div><div class="order-actions">
         <button id="checkout-next" class="primary" data-i18n="checkout" disabled>Checkout</button>
         <button id="continue-payment" class="primary" type="submit" form="customer-form" data-i18n="continuePayment" hidden>Continue to payment</button>
