@@ -209,6 +209,12 @@
       "pack": null,
       "carton": null,
       "unit": 1599000
+    },
+    {
+      "id": "MALBORO RED",
+      "pack": 50000,
+      "carton": 500000,
+      "unit": null
     }
   ]
 }
