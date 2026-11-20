@@ -3473,6 +3473,24 @@
         "unit"
       ],
       "description": "Iqos Iluma i Prime Aspen Green"
+    },
+    {
+      "id": "amber-korean",
+      "category": "sticks",
+      "name": "Terea Korea Amber",
+      "nameZh": "앰버",
+      "variant": "Amber",
+      "color": "#cc4700",
+      "brand": "TEREA",
+      "flavor": "Medium-bodied roasted tobacco with warm nutty notes and a hint of wood.",
+      "country": "",
+      "image": "/images/products/Kor_Amber.jpg",
+      "images": [],
+      "units": [
+        "pack",
+        "carton"
+      ],
+      "description": "Medium-bodied roasted tobacco with warm nutty notes and a hint of wood."
     }
   ]
 }
