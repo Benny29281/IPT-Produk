@@ -3473,24 +3473,6 @@
         "unit"
       ],
       "description": "Iqos Iluma i Prime Aspen Green"
-    },
-    {
-      "id": "Marboro Mild",
-      "category": "sticks",
-      "name": "MALBORO RED",
-      "nameZh": "万宝路红",
-      "variant": "RED",
-      "color": "#af3c3c",
-      "brand": "MALBORO",
-      "flavor": "",
-      "country": "ID",
-      "image": "/images/products/KUCING.jpg",
-      "images": [],
-      "units": [
-        "pack",
-        "carton"
-      ],
-      "description": ""
     }
   ]
 }
