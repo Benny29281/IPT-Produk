@@ -209,12 +209,6 @@
       "pack": null,
       "carton": null,
       "unit": 1599000
-    },
-    {
-      "id": "Marboro Mild",
-      "pack": 50000,
-      "carton": 500000,
-      "unit": null
     }
   ]
 }
